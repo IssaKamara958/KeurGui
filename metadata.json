@@ -1,0 +1,6 @@
+{
+  "name": "Maison à vendre",
+  "description": "Application immobilière dynamique pour la vente d'une maison à 55 000 000 FCFA au Sénégal. Galerie photos, contact WhatsApp direct, géolocalisation et administration complète.",
+  "requestFramePermissions": ["geolocation"],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
