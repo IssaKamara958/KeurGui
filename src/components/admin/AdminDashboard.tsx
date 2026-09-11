@@ -287,6 +287,16 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
     showToast('Média supprimé', 'info');
   };
 
+  // Update Media Title
+  const handleUpdateMediaTitle = async (mediaId: string, title: string) => {
+    await PropertyService.updateMedia(mediaId, { title });
+    setFormData((prev) => ({
+      ...prev,
+      media: prev.media.map((m) => (m.id === mediaId ? { ...m, title } : m)),
+    }));
+    showToast('Titre de la photo mis à jour', 'success');
+  };
+
   // Add Contact
   const handleAddContact = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -364,6 +374,16 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
     showToast('Caractéristique supprimée', 'info');
   };
 
+  // Update Feature
+  const handleUpdateFeature = async (featId: string, updates: Partial<PropertyFeature>) => {
+    await PropertyService.updateFeature(featId, updates);
+    setFormData((prev) => ({
+      ...prev,
+      features: prev.features.map((f) => (f.id === featId ? { ...f, ...updates } : f)),
+    }));
+    showToast('Caractéristique mise à jour', 'success');
+  };
+
   // Reset to seed
   const handleResetToSeed = async () => {
     if (confirm('Attention : réinitialiser toutes les données à leur état officiel initial ?')) {
@@ -376,9 +396,9 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
 
   return (
     <div className="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm flex items-center justify-center p-2 sm:p-4 overflow-y-auto">
-      <div className="bg-white rounded-3xl shadow-2xl w-full max-w-5xl my-auto overflow-hidden border border-neutral-200 flex flex-col max-h-[92vh]">
+      <div className="bg-white dark:bg-neutral-900 rounded-3xl shadow-2xl w-full max-w-5xl my-auto overflow-hidden border border-neutral-200 dark:border-neutral-800 flex flex-col max-h-[92vh] transition-colors">
         {/* Modal Header */}
-        <div className="bg-neutral-900 text-white px-6 py-4 flex items-center justify-between border-b border-neutral-800 shrink-0">
+        <div className="bg-neutral-900 dark:bg-neutral-950 text-white px-6 py-4 flex items-center justify-between border-b border-neutral-800 shrink-0">
           <div className="flex items-center gap-3">
             <div className="w-8 h-8 rounded-lg bg-emerald-500 text-white flex items-center justify-center">
               <Lock className="w-4 h-4" />
@@ -417,13 +437,13 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
         {!isAuthenticated ? (
           /* Login View */
           <div className="p-8 sm:p-12 max-w-md mx-auto w-full text-center space-y-6">
-            <div className="w-16 h-16 rounded-2xl bg-amber-100 text-amber-800 mx-auto flex items-center justify-center shadow-inner">
+            <div className="w-16 h-16 rounded-2xl bg-amber-100 dark:bg-amber-950/60 text-amber-800 dark:text-amber-300 mx-auto flex items-center justify-center shadow-inner">
               <Lock className="w-8 h-8" />
             </div>
 
             <div>
-              <h3 className="text-xl font-bold text-neutral-900">Espace Vendeur & Administrateur</h3>
-              <p className="text-sm text-neutral-500 mt-1">
+              <h3 className="text-xl font-bold text-neutral-900 dark:text-neutral-100">Espace Vendeur & Administrateur</h3>
+              <p className="text-sm text-neutral-500 dark:text-neutral-400 mt-1">
                 Accès réservé à Abdou KAMARA et aux ayants droit de Fatou Ba.
               </p>
             </div>
@@ -431,7 +451,7 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
             <form onSubmit={handleLogin} className="space-y-4">
               {/* Identifiant Input */}
               <div>
-                <label className="block text-left text-xs font-semibold text-neutral-700 mb-1.5">
+                <label className="block text-left text-xs font-semibold text-neutral-700 dark:text-neutral-300 mb-1.5">
                   Identifiant administrateur
                 </label>
                 <div className="relative">
@@ -443,7 +463,7 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
                     value={usernameInput}
                     onChange={(e) => setUsernameInput(e.target.value)}
                     placeholder="Entrez votre identifiant"
-                    className="w-full pl-10 pr-4 py-2.5 rounded-xl border border-neutral-300 focus:outline-none focus:ring-2 focus:ring-emerald-500 font-medium text-sm text-neutral-800 bg-white placeholder:text-neutral-400"
+                    className="w-full pl-10 pr-4 py-2.5 rounded-xl border border-neutral-300 dark:border-neutral-700 focus:outline-none focus:ring-2 focus:ring-emerald-500 font-medium text-sm text-neutral-800 dark:text-neutral-200 bg-white dark:bg-neutral-800 placeholder:text-neutral-400 dark:placeholder:text-neutral-500"
                     autoFocus
                     required
                   />
@@ -452,7 +472,7 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
 
               {/* Mot de passe Input */}
               <div>
-                <label className="block text-left text-xs font-semibold text-neutral-700 mb-1.5">
+                <label className="block text-left text-xs font-semibold text-neutral-700 dark:text-neutral-300 mb-1.5">
                   Mot de passe
                 </label>
                 <div className="relative">
@@ -464,13 +484,13 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
                     value={passwordInput}
                     onChange={(e) => setPasswordInput(e.target.value)}
                     placeholder="Entrez votre mot de passe"
-                    className="w-full pl-10 pr-11 py-2.5 rounded-xl border border-neutral-300 focus:outline-none focus:ring-2 focus:ring-emerald-500 font-medium text-sm text-neutral-800 bg-white placeholder:text-neutral-400"
+                    className="w-full pl-10 pr-11 py-2.5 rounded-xl border border-neutral-300 dark:border-neutral-700 focus:outline-none focus:ring-2 focus:ring-emerald-500 font-medium text-sm text-neutral-800 dark:text-neutral-200 bg-white dark:bg-neutral-800 placeholder:text-neutral-400 dark:placeholder:text-neutral-500"
                     required
                   />
                   <button
                     type="button"
                     onClick={() => setShowPassword(!showPassword)}
-                    className="absolute inset-y-0 right-0 pr-3.5 flex items-center text-neutral-400 hover:text-neutral-600 transition-colors cursor-pointer"
+                    className="absolute inset-y-0 right-0 pr-3.5 flex items-center text-neutral-400 hover:text-neutral-600 dark:hover:text-neutral-200 transition-colors cursor-pointer"
                     title={showPassword ? 'Masquer le mot de passe' : 'Afficher le mot de passe'}
                   >
                     {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
@@ -480,8 +500,8 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
 
               {/* Error Message */}
               {authError && (
-                <div className="p-3 rounded-xl bg-rose-50 border border-rose-200 text-rose-700 text-xs text-left flex items-start gap-2">
-                  <AlertTriangle className="w-4 h-4 text-rose-600 shrink-0 mt-0.5" />
+                <div className="p-3 rounded-xl bg-rose-50 dark:bg-rose-950/40 border border-rose-200 dark:border-rose-900/60 text-rose-700 dark:text-rose-300 text-xs text-left flex items-start gap-2">
+                  <AlertTriangle className="w-4 h-4 text-rose-600 dark:text-rose-400 shrink-0 mt-0.5" />
                   <span>{authError}</span>
                 </div>
               )}
@@ -494,7 +514,7 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
                 <span>Se connecter à l'administration</span>
               </button>
 
-              <div className="p-2.5 rounded-xl bg-neutral-100 border border-neutral-200/80 text-2xs text-neutral-600 text-center">
+              <div className="p-2.5 rounded-xl bg-neutral-100 dark:bg-neutral-800 border border-neutral-200/80 dark:border-neutral-700 text-2xs text-neutral-600 dark:text-neutral-400 text-center">
                 🔒 Accès strictement sécurisé réservé à l'administrateur mandataire.
               </div>
             </form>
@@ -503,13 +523,13 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
           /* Admin Navigation & Tabs */
           <div className="flex-1 flex flex-col md:flex-row overflow-hidden">
             {/* Sidebar Navigation */}
-            <div className="w-full md:w-56 bg-neutral-50 border-r border-neutral-200 p-3 flex md:flex-col gap-1 overflow-x-auto md:overflow-y-auto shrink-0">
+            <div className="w-full md:w-56 bg-neutral-50 dark:bg-neutral-950 border-r border-neutral-200 dark:border-neutral-800 p-3 flex md:flex-col gap-1 overflow-x-auto md:overflow-y-auto shrink-0 transition-colors">
               <button
                 onClick={() => setActiveTab('dashboard')}
                 className={`flex items-center gap-2.5 px-3 py-2.5 rounded-xl text-xs font-semibold transition-colors shrink-0 cursor-pointer ${
                   activeTab === 'dashboard'
-                    ? 'bg-neutral-900 text-white shadow-xs'
-                    : 'text-neutral-700 hover:bg-neutral-200/70'
+                    ? 'bg-neutral-900 dark:bg-emerald-600 text-white shadow-xs'
+                    : 'text-neutral-700 dark:text-neutral-300 hover:bg-neutral-200/70 dark:hover:bg-neutral-800'
                 }`}
               >
                 <BarChart3 className="w-4 h-4 text-emerald-400" />
@@ -520,8 +540,8 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
                 onClick={() => setActiveTab('general')}
                 className={`flex items-center gap-2.5 px-3 py-2.5 rounded-xl text-xs font-semibold transition-colors shrink-0 cursor-pointer ${
                   activeTab === 'general'
-                    ? 'bg-neutral-900 text-white shadow-xs'
-                    : 'text-neutral-700 hover:bg-neutral-200/70'
+                    ? 'bg-neutral-900 dark:bg-emerald-600 text-white shadow-xs'
+                    : 'text-neutral-700 dark:text-neutral-300 hover:bg-neutral-200/70 dark:hover:bg-neutral-800'
                 }`}
               >
                 <Home className="w-4 h-4 text-emerald-400" />
@@ -532,8 +552,8 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
                 onClick={() => setActiveTab('location')}
                 className={`flex items-center gap-2.5 px-3 py-2.5 rounded-xl text-xs font-semibold transition-colors shrink-0 cursor-pointer ${
                   activeTab === 'location'
-                    ? 'bg-neutral-900 text-white shadow-xs'
-                    : 'text-neutral-700 hover:bg-neutral-200/70'
+                    ? 'bg-neutral-900 dark:bg-emerald-600 text-white shadow-xs'
+                    : 'text-neutral-700 dark:text-neutral-300 hover:bg-neutral-200/70 dark:hover:bg-neutral-800'
                 }`}
               >
                 <MapPin className="w-4 h-4 text-rose-400" />
@@ -544,8 +564,8 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
                 onClick={() => setActiveTab('media')}
                 className={`flex items-center gap-2.5 px-3 py-2.5 rounded-xl text-xs font-semibold transition-colors shrink-0 cursor-pointer ${
                   activeTab === 'media'
-                    ? 'bg-neutral-900 text-white shadow-xs'
-                    : 'text-neutral-700 hover:bg-neutral-200/70'
+                    ? 'bg-neutral-900 dark:bg-emerald-600 text-white shadow-xs'
+                    : 'text-neutral-700 dark:text-neutral-300 hover:bg-neutral-200/70 dark:hover:bg-neutral-800'
                 }`}
               >
                 <Camera className="w-4 h-4 text-sky-400" />
@@ -556,8 +576,8 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
                 onClick={() => setActiveTab('contacts')}
                 className={`flex items-center gap-2.5 px-3 py-2.5 rounded-xl text-xs font-semibold transition-colors shrink-0 cursor-pointer ${
                   activeTab === 'contacts'
-                    ? 'bg-neutral-900 text-white shadow-xs'
-                    : 'text-neutral-700 hover:bg-neutral-200/70'
+                    ? 'bg-neutral-900 dark:bg-emerald-600 text-white shadow-xs'
+                    : 'text-neutral-700 dark:text-neutral-300 hover:bg-neutral-200/70 dark:hover:bg-neutral-800'
                 }`}
               >
                 <MessageSquare className="w-4 h-4 text-emerald-400" />
@@ -803,7 +823,7 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
 
                     <div>
                       <label className="block text-xs font-bold text-emerald-800 mb-1">
-                        Vendeur officiel mandaté
+                        Mandataire officiel
                       </label>
                       <input
                         type="text"
@@ -814,7 +834,7 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
                             seller: { ...formData.seller, name: e.target.value },
                           })
                         }
-                        placeholder="Ex: Abdou KAMARA"
+                        placeholder="Ex: Mr KAMARA"
                         className="w-full px-3.5 py-2.5 rounded-xl border border-emerald-300 bg-emerald-50/40 text-sm font-semibold"
                       />
                     </div>
@@ -1065,9 +1085,23 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
                           </div>
 
                           <div className="p-3 space-y-2">
-                            <p className="text-xs font-bold text-neutral-900 line-clamp-1">
-                              {item.title}
-                            </p>
+                            <input
+                              type="text"
+                              value={item.title}
+                              onChange={(e) => {
+                                const newTitle = e.target.value;
+                                setFormData((prev) => ({
+                                  ...prev,
+                                  media: prev.media.map((m) =>
+                                    m.id === item.id ? { ...m, title: newTitle } : m
+                                  ),
+                                }));
+                              }}
+                              onBlur={(e) => handleUpdateMediaTitle(item.id, e.target.value)}
+                              placeholder="Titre de la photo (ex: Façade, Salon...)"
+                              className="w-full text-xs font-bold text-neutral-900 border-b border-transparent hover:border-neutral-300 focus:border-emerald-500 focus:outline-hidden py-0.5"
+                              title="Cliquez pour modifier le titre"
+                            />
 
                             <div className="flex items-center justify-between pt-2 border-t border-neutral-100 text-2xs">
                               {item.type === 'image' && (
@@ -1113,7 +1147,7 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
                       Gestion des Lignes WhatsApp & Contacts
                     </h3>
                     <p className="text-xs text-neutral-500">
-                      Activez, désactivez ou ajoutez des numéros pour le vendeur Abdou KAMARA.
+                      Activez, désactivez ou ajoutez des numéros pour le mandataire Mr KAMARA.
                     </p>
                   </div>
 
@@ -1143,7 +1177,7 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
                         type="text"
                         value={newContactLabel}
                         onChange={(e) => setNewContactLabel(e.target.value)}
-                        placeholder="WhatsApp Abdou Ligne 3"
+                        placeholder="WhatsApp Mr KAMARA Ligne 3"
                         className="w-full px-3 py-2 rounded-xl border border-neutral-300 text-xs"
                       />
                     </div>
@@ -1292,17 +1326,48 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
                     {formData.features.map((feat) => (
                       <div
                         key={feat.id}
-                        className="bg-white border border-neutral-200 rounded-xl p-3 flex items-center justify-between"
+                        className="bg-white border border-neutral-200 rounded-xl p-3 flex items-center justify-between gap-3 shadow-2xs hover:border-neutral-300 transition-colors"
                       >
-                        <div>
-                          <span className="text-2xs text-neutral-400 uppercase font-semibold">
-                            {feat.label}
-                          </span>
-                          <p className="text-sm font-bold text-neutral-900">{feat.value}</p>
+                        <div className="flex-1 space-y-1">
+                          <input
+                            type="text"
+                            value={feat.label}
+                            onChange={(e) => {
+                              const newLabel = e.target.value;
+                              setFormData((prev) => ({
+                                ...prev,
+                                features: prev.features.map((f) =>
+                                  f.id === feat.id ? { ...f, label: newLabel } : f
+                                ),
+                              }));
+                            }}
+                            onBlur={(e) => handleUpdateFeature(feat.id, { label: e.target.value })}
+                            className="text-2xs text-neutral-500 uppercase font-bold border-b border-transparent hover:border-neutral-300 focus:border-emerald-500 focus:outline-hidden w-full py-0.5"
+                            placeholder="Libellé"
+                            title="Modifier le libellé"
+                          />
+                          <input
+                            type="text"
+                            value={feat.value}
+                            onChange={(e) => {
+                              const newVal = e.target.value;
+                              setFormData((prev) => ({
+                                ...prev,
+                                features: prev.features.map((f) =>
+                                  f.id === feat.id ? { ...f, value: newVal } : f
+                                ),
+                              }));
+                            }}
+                            onBlur={(e) => handleUpdateFeature(feat.id, { value: e.target.value })}
+                            className="text-sm font-bold text-neutral-900 border-b border-transparent hover:border-neutral-300 focus:border-emerald-500 focus:outline-hidden w-full py-0.5"
+                            placeholder="Valeur"
+                            title="Modifier la valeur"
+                          />
                         </div>
                         <button
                           onClick={() => handleDeleteFeature(feat.id)}
-                          className="p-1.5 text-neutral-400 hover:text-rose-600 rounded-lg hover:bg-rose-50"
+                          className="p-1.5 text-neutral-400 hover:text-rose-600 rounded-lg hover:bg-rose-50 cursor-pointer shrink-0"
+                          title="Supprimer cette caractéristique"
                         >
                           <Trash2 className="w-4 h-4" />
                         </button>

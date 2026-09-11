@@ -1,0 +1,321 @@
+{
+  "property": {
+    "id": "maison-fatou-ba-001",
+    "title": "Maison à vendre",
+    "slug": "maison-a-vendre",
+    "description": "Opportunité immobilière exceptionnelle au Sénégal. Maison à vendre d'une superficie de 600 m², proposée à 55 000 000 FCFA. Emplacement stratégique à fort potentiel d'aménagement ou de valorisation foncière. Dossier complet géré par le mandataire Mr KAMARA. Visites et renseignements directs via WhatsApp.",
+    "price": 55000000,
+    "currency": "FCFA",
+    "surface": 600,
+    "unit": "m²",
+    "property_type": "Maison individuelle",
+    "status": "available",
+    "country": "Sénégal",
+    "city": "Thiès / Région de Thiès",
+    "neighborhood": "Secteur résidentiel",
+    "address": "Coordonnées et adresse précises communiquées lors de la prise de contact",
+    "landmark": "Proximité des axes principaux et commodités",
+    "latitude": 14.7932,
+    "longitude": -16.9265,
+    "location_verified": false,
+    "is_published": true,
+    "published_at": "2026-03-01T10:00:00.000Z",
+    "seo_title": "Maison à vendre — 55 000 000 FCFA | Sénégal",
+    "seo_description": "Maison à vendre au prix de 55 000 000 FCFA (600 m²). Mandataire : Mr KAMARA. Contact direct WhatsApp.",
+    "og_image": "https://images.unsplash.com/photo-1580587771525-78b9dba3b914?auto=format&fit=crop&w=1600&q=80",
+    "created_at": "2026-03-01T10:00:00.000Z",
+    "updated_at": "2026-03-08T12:00:00.000Z",
+    "owners": [
+      {
+        "id": "owner-01",
+        "name": "Descendants de Fatou Ba",
+        "description": "Ayants droit et propriétaires légitimes du bien immobilier.",
+        "created_at": "2026-03-01T10:00:00.000Z",
+        "updated_at": "2026-03-01T10:00:00.000Z"
+      }
+    ],
+    "seller": {
+      "id": "seller-01",
+      "name": "Mr KAMARA",
+      "email": "contact@kamara-immobilier.sn",
+      "phone": "+221774125797",
+      "description": "Mandataire agréé pour la vente du bien.",
+      "created_at": "2026-03-01T10:00:00.000Z",
+      "updated_at": "2026-03-01T10:00:00.000Z"
+    },
+    "contacts": [
+      {
+        "id": "contact-01",
+        "seller_id": "seller-01",
+        "type": "whatsapp",
+        "value": "+221774125797",
+        "label": "WhatsApp principal (KAMARA)",
+        "is_primary": true,
+        "active": true,
+        "created_at": "2026-03-01T10:00:00.000Z",
+        "updated_at": "2026-03-01T10:00:00.000Z"
+      },
+      {
+        "id": "contact-02",
+        "seller_id": "seller-01",
+        "type": "whatsapp",
+        "value": "+221776828441",
+        "label": "WhatsApp secondaire (Ligne 2)",
+        "is_primary": false,
+        "active": true,
+        "created_at": "2026-03-01T10:00:00.000Z",
+        "updated_at": "2026-03-01T10:00:00.000Z"
+      },
+      {
+        "id": "contact-03",
+        "seller_id": "seller-01",
+        "type": "phone",
+        "value": "+221774125797",
+        "label": "Appel direct",
+        "is_primary": false,
+        "active": true,
+        "created_at": "2026-03-01T10:00:00.000Z",
+        "updated_at": "2026-03-01T10:00:00.000Z"
+      }
+    ],
+    "media": [
+      {
+        "id": "media-01",
+        "property_id": "maison-fatou-ba-001",
+        "type": "image",
+        "url": "https://images.unsplash.com/photo-1580587771525-78b9dba3b914?auto=format&fit=crop&w=1600&q=80",
+        "title": "Façade extérieure",
+        "alt_text": "Façade principale de la maison à vendre",
+        "display_order": 1,
+        "featured": true,
+        "active": true,
+        "created_at": "2026-03-01T10:00:00.000Z",
+        "updated_at": "2026-03-01T10:00:00.000Z"
+      },
+      {
+        "id": "media-02",
+        "property_id": "maison-fatou-ba-001",
+        "type": "image",
+        "url": "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=1200&q=80",
+        "title": "Vue d’ensemble du bien",
+        "alt_text": "Entrée et structure du bâtiment",
+        "display_order": 2,
+        "featured": false,
+        "active": true,
+        "created_at": "2026-03-01T10:00:00.000Z",
+        "updated_at": "2026-03-01T10:00:00.000Z"
+      },
+      {
+        "id": "media-03",
+        "property_id": "maison-fatou-ba-001",
+        "type": "image",
+        "url": "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80",
+        "title": "Pièce de vie & structure",
+        "alt_text": "Aménagement intérieur et potentiel d’espace",
+        "display_order": 3,
+        "featured": false,
+        "active": true,
+        "created_at": "2026-03-01T10:00:00.000Z",
+        "updated_at": "2026-03-01T10:00:00.000Z"
+      },
+      {
+        "id": "media-04",
+        "property_id": "maison-fatou-ba-001",
+        "type": "image",
+        "url": "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=1200&q=80",
+        "title": "Environnement & accès",
+        "alt_text": "Vue sur la cour et environnement immédiat",
+        "display_order": 4,
+        "featured": false,
+        "active": true,
+        "created_at": "2026-03-01T10:00:00.000Z",
+        "updated_at": "2026-03-01T10:00:00.000Z"
+      },
+      {
+        "id": "media-05",
+        "property_id": "maison-fatou-ba-001",
+        "type": "tiktok",
+        "url": "https://www.tiktok.com/@senegal.immobilier/video/7345678901234567890",
+        "title": "Visite guidée en vidéo TikTok",
+        "alt_text": "Présentation vidéo de la maison et des alentours",
+        "display_order": 5,
+        "featured": false,
+        "active": true,
+        "created_at": "2026-03-01T10:00:00.000Z",
+        "updated_at": "2026-03-01T10:00:00.000Z"
+      }
+    ],
+    "features": [
+      {
+        "id": "feat-01",
+        "property_id": "maison-fatou-ba-001",
+        "label": "Superficie",
+        "value": "25 m²",
+        "icon": "ruler",
+        "display_order": 1,
+        "active": true
+      },
+      {
+        "id": "feat-02",
+        "property_id": "maison-fatou-ba-001",
+        "label": "Type de bien",
+        "value": "Maison",
+        "icon": "home",
+        "display_order": 2,
+        "active": true
+      },
+      {
+        "id": "feat-03",
+        "property_id": "maison-fatou-ba-001",
+        "label": "Propriété successorale",
+        "value": "Descendants de Fatou Ba",
+        "icon": "shield-check",
+        "display_order": 3,
+        "active": true
+      },
+      {
+        "id": "feat-04",
+        "property_id": "maison-fatou-ba-001",
+        "label": "Vendeur officiel",
+        "value": "Abdou KAMARA",
+        "icon": "user-check",
+        "display_order": 4,
+        "active": true
+      },
+      {
+        "id": "feat-05",
+        "property_id": "maison-fatou-ba-001",
+        "label": "Réseaux & Viabilisation",
+        "value": "Eau & Électricité accessibles",
+        "icon": "zap",
+        "display_order": 5,
+        "active": true
+      },
+      {
+        "id": "feat-06",
+        "property_id": "maison-fatou-ba-001",
+        "label": "Accès transport",
+        "value": "Voie carrossable & commerces",
+        "icon": "map-pin",
+        "display_order": 6,
+        "active": true
+      }
+    ]
+  },
+  "analytics": {
+    "page_views": 1247,
+    "whatsapp_clicks": 87,
+    "phone_clicks": 23,
+    "map_clicks": 42,
+    "share_clicks": 18,
+    "tiktok_clicks": 63,
+    "gallery_views": 310,
+    "total_interactions": 543,
+    "recent_events": [
+      {
+        "id": "evt-1789086871318",
+        "property_id": "maison-fatou-ba-001",
+        "event_type": "page_view",
+        "metadata": {
+          "property_id": "maison-fatou-ba-001",
+          "referrer": "https://aistudio.google.com/"
+        },
+        "created_at": "2026-09-11T00:34:31.318Z"
+      },
+      {
+        "id": "evt-1789086733119",
+        "property_id": "maison-fatou-ba-001",
+        "event_type": "page_view",
+        "metadata": {
+          "property_id": "maison-fatou-ba-001",
+          "referrer": "https://aistudio.google.com/"
+        },
+        "created_at": "2026-09-11T00:32:13.119Z"
+      },
+      {
+        "id": "evt-01",
+        "property_id": "maison-fatou-ba-001",
+        "event_type": "whatsapp_click",
+        "metadata": {
+          "contact": "+221774125797",
+          "source": "hero_button"
+        },
+        "created_at": "2026-03-08T18:42:00.000Z"
+      },
+      {
+        "id": "evt-02",
+        "property_id": "maison-fatou-ba-001",
+        "event_type": "gallery_view",
+        "metadata": {
+          "photo_id": "media-01"
+        },
+        "created_at": "2026-03-08T18:40:12.000Z"
+      },
+      {
+        "id": "evt-03",
+        "property_id": "maison-fatou-ba-001",
+        "event_type": "map_click",
+        "metadata": {
+          "source": "location_section"
+        },
+        "created_at": "2026-03-08T17:15:30.000Z"
+      },
+      {
+        "id": "evt-04",
+        "property_id": "maison-fatou-ba-001",
+        "event_type": "whatsapp_click",
+        "metadata": {
+          "contact": "+221776828441",
+          "source": "mobile_bar"
+        },
+        "created_at": "2026-03-08T16:20:00.000Z"
+      },
+      {
+        "id": "evt-05",
+        "property_id": "maison-fatou-ba-001",
+        "event_type": "share_click",
+        "metadata": {
+          "method": "copy_link"
+        },
+        "created_at": "2026-03-08T15:05:00.000Z"
+      }
+    ],
+    "timeline": [
+      {
+        "date": "02 Mars",
+        "views": 110,
+        "contacts": 8
+      },
+      {
+        "date": "03 Mars",
+        "views": 145,
+        "contacts": 12
+      },
+      {
+        "date": "04 Mars",
+        "views": 190,
+        "contacts": 15
+      },
+      {
+        "date": "05 Mars",
+        "views": 230,
+        "contacts": 19
+      },
+      {
+        "date": "06 Mars",
+        "views": 185,
+        "contacts": 11
+      },
+      {
+        "date": "07 Mars",
+        "views": 215,
+        "contacts": 14
+      },
+      {
+        "date": "08 Mars",
+        "views": 170,
+        "contacts": 8
+      }
+    ]
+  }
+}

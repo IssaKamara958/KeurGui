@@ -45,15 +45,15 @@ export const PropertyGallery: React.FC<PropertyGalleryProps> = ({ media, onOpenP
 
   if (images.length === 0) {
     return (
-      <div className="bg-neutral-100 rounded-3xl p-12 text-center border border-dashed border-neutral-300">
-        <ImageIcon className="w-12 h-12 text-neutral-400 mx-auto mb-3" />
-        <h3 className="text-base font-semibold text-neutral-800">Aucune photo enregistrée</h3>
-        <p className="text-sm text-neutral-500 max-w-sm mx-auto mt-1 mb-4">
+      <div className="bg-neutral-100 dark:bg-neutral-900 rounded-3xl p-12 text-center border border-dashed border-neutral-300 dark:border-neutral-800 transition-colors">
+        <ImageIcon className="w-12 h-12 text-neutral-400 dark:text-neutral-600 mx-auto mb-3" />
+        <h3 className="text-base font-semibold text-neutral-800 dark:text-neutral-200">Aucune photo enregistrée</h3>
+        <p className="text-sm text-neutral-500 dark:text-neutral-400 max-w-sm mx-auto mt-1 mb-4">
           Vous pouvez ajouter les vraies photos de la maison dès maintenant.
         </p>
         <button
           onClick={onOpenPhotoManager}
-          className="inline-flex items-center gap-2 px-4 py-2 bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-semibold rounded-xl shadow-xs transition-all"
+          className="inline-flex items-center gap-2 px-4 py-2 bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-semibold rounded-xl shadow-xs transition-all cursor-pointer"
         >
           <Camera className="w-4 h-4" />
           Ajouter les photos du bien
@@ -67,12 +67,12 @@ export const PropertyGallery: React.FC<PropertyGalleryProps> = ({ media, onOpenP
       {/* Header bar of gallery */}
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-2">
-          <Camera className="w-5 h-5 text-emerald-600" />
-          <h2 className="text-lg font-bold text-neutral-900">Galerie photos ({images.length})</h2>
+          <Camera className="w-5 h-5 text-emerald-600 dark:text-emerald-400" />
+          <h2 className="text-lg font-bold text-neutral-900 dark:text-neutral-100">Galerie photos ({images.length})</h2>
         </div>
         <button
           onClick={onOpenPhotoManager}
-          className="text-xs font-semibold text-emerald-700 hover:text-emerald-800 bg-emerald-50 hover:bg-emerald-100 px-3 py-1.5 rounded-lg border border-emerald-200 transition-colors flex items-center gap-1.5 cursor-pointer"
+          className="text-xs font-semibold text-emerald-700 dark:text-emerald-300 hover:text-emerald-800 bg-emerald-50 dark:bg-emerald-950/60 hover:bg-emerald-100 dark:hover:bg-emerald-900/60 px-3 py-1.5 rounded-lg border border-emerald-200 dark:border-emerald-800/80 transition-colors flex items-center gap-1.5 cursor-pointer"
           title="Uploader de nouvelles photos"
         >
           <PlusCircle className="w-3.5 h-3.5" />
@@ -82,7 +82,7 @@ export const PropertyGallery: React.FC<PropertyGalleryProps> = ({ media, onOpenP
 
       {/* Main Feature Photo */}
       <div
-        className="relative group rounded-2xl sm:rounded-3xl overflow-hidden bg-neutral-900 aspect-16/10 sm:aspect-16/9 cursor-pointer shadow-md border border-neutral-200"
+        className="relative group rounded-2xl sm:rounded-3xl overflow-hidden bg-neutral-900 aspect-16/10 sm:aspect-16/9 cursor-pointer shadow-md border border-neutral-200 dark:border-neutral-800"
         onClick={() => handleOpenLightbox(selectedIdx)}
       >
         <img

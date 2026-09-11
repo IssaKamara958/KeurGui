@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <linearGradient id="pwaGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#059669" />
+      <stop offset="50%" stop-color="#10b981" />
+      <stop offset="100%" stop-color="#0d9488" />
+    </linearGradient>
+    <linearGradient id="accentGrad" x1="0%" y1="100%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#fbbf24" />
+      <stop offset="100%" stop-color="#f59e0b" />
+    </linearGradient>
+  </defs>
+  <!-- Background with rounded corners -->
+  <rect width="512" height="512" rx="112" fill="url(#pwaGrad)" />
+  
+  <!-- Subtle inner glow / frame -->
+  <rect x="24" y="24" width="464" height="464" rx="96" fill="none" stroke="#ffffff" stroke-opacity="0.18" stroke-width="6" />
+
+  <!-- Modern House Silhouette -->
+  <!-- Roof Top Peak: (256, 110), Left Eaves: (118, 220), Right Eaves: (394, 220) -->
+  <polygon points="256,116 110,230 144,230 256,146 368,230 402,230" fill="#ffffff" />
+  
+  <!-- Chimney -->
+  <polygon points="328,154 354,174 354,136 328,136" fill="#ffffff" opacity="0.9" />
+
+  <!-- House Body -->
+  <path d="M 148,228 L 364,228 C 372,228 378,234 378,242 L 378,374 C 378,386 368,396 356,396 L 156,396 C 144,396 134,386 134,374 L 134,242 C 134,234 140,228 148,228 Z" fill="#ffffff" />
+
+  <!-- Windows (4 squares) -->
+  <!-- Top Left Window -->
+  <rect x="168" y="256" width="46" height="46" rx="8" fill="#10b981" />
+  <!-- Top Right Window -->
+  <rect x="228" y="256" width="46" height="46" rx="8" fill="#10b981" />
+  <!-- Ground Floor Right Window -->
+  <rect x="298" y="256" width="46" height="46" rx="8" fill="#10b981" />
+
+  <!-- Main Door (Arch) -->
+  <path d="M 230,396 L 230,332 C 230,318 242,306 256,306 C 270,306 282,318 282,332 L 282,396 Z" fill="#047857" />
+  <circle cx="272" cy="354" r="4" fill="url(#accentGrad)" />
+
+  <!-- Badge 600m² / Star Accent -->
+  <rect x="156" y="324" width="58" height="46" rx="8" fill="url(#accentGrad)" />
+  <text x="185" y="353" font-family="system-ui, -apple-system, sans-serif" font-size="16" font-weight="900" fill="#ffffff" text-anchor="middle">600</text>
+  <text x="185" y="365" font-family="system-ui, -apple-system, sans-serif" font-size="10" font-weight="700" fill="#ffffff" text-anchor="middle">m²</text>
+</svg>

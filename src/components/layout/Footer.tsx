@@ -2,6 +2,8 @@ import React from 'react';
 import { Property } from '../../types';
 import { PropertyService } from '../../services/propertyService';
 import { Home, ShieldCheck, Lock, Heart, MessageSquare } from 'lucide-react';
+import { PWAInstallButton } from '../pwa/PWAInstallButton';
+import { ThemeToggle } from '../ui/ThemeToggle';
 
 interface FooterProps {
   property: Property;
@@ -10,7 +12,7 @@ interface FooterProps {
 
 export const Footer: React.FC<FooterProps> = ({ property, onOpenAdmin }) => {
   return (
-    <footer className="bg-neutral-900 text-neutral-300 border-t border-neutral-800 pt-12 pb-24 sm:pb-14">
+    <footer className="bg-neutral-900 dark:bg-neutral-950 text-neutral-300 border-t border-neutral-800 pt-12 pb-24 sm:pb-14 transition-colors">
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 pb-10 border-b border-neutral-800">
           {/* Brand & summary */}
@@ -34,7 +36,7 @@ export const Footer: React.FC<FooterProps> = ({ property, onOpenAdmin }) => {
           {/* Lineage and actors */}
           <div className="space-y-2 text-xs">
             <h4 className="text-white font-bold text-sm">Parties prenantes</h4>
-            <div className="bg-neutral-800/60 p-3 rounded-xl space-y-2 border border-neutral-700/60">
+            <div className="bg-neutral-800/60 dark:bg-neutral-900/60 p-3 rounded-xl space-y-2 border border-neutral-700/60 dark:border-neutral-800/60">
               <div>
                 <span className="text-neutral-400 block text-2xs uppercase">Propriétaires légitimes :</span>
                 <strong className="text-white font-semibold">
@@ -42,9 +44,9 @@ export const Footer: React.FC<FooterProps> = ({ property, onOpenAdmin }) => {
                 </strong>
               </div>
               <div>
-                <span className="text-neutral-400 block text-2xs uppercase">Vendeur mandataire :</span>
+                <span className="text-neutral-400 block text-2xs uppercase">Mandataire :</span>
                 <strong className="text-emerald-400 font-semibold">
-                  {property.seller?.name || 'Abdou KAMARA'}
+                  {property.seller?.name || 'Mr KAMARA'}
                 </strong>
               </div>
             </div>
@@ -56,22 +58,26 @@ export const Footer: React.FC<FooterProps> = ({ property, onOpenAdmin }) => {
             <p className="text-neutral-400">
               Accès réservé pour la mise à jour des prix, photos réelles, vidéos TikTok et coordonnées GPS.
             </p>
-            <button
-              onClick={onOpenAdmin}
-              className="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl bg-neutral-800 hover:bg-neutral-700 text-neutral-200 text-xs font-semibold border border-neutral-700 transition-colors cursor-pointer"
-            >
-              <Lock className="w-3.5 h-3.5 text-amber-400" />
-              <span>Accéder à l'Administration</span>
-            </button>
+            <div className="flex flex-wrap items-center gap-3">
+              <button
+                onClick={onOpenAdmin}
+                className="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl bg-neutral-800 hover:bg-neutral-700 text-neutral-200 text-xs font-semibold border border-neutral-700 transition-colors cursor-pointer"
+              >
+                <Lock className="w-3.5 h-3.5 text-amber-400" />
+                <span>Accéder à l'Administration</span>
+              </button>
+            </div>
           </div>
         </div>
 
-        {/* Copyright notice */}
+        {/* Copyright & developer notice & PWA */}
         <div className="pt-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-2xs text-neutral-500">
           <p>© {new Date().getFullYear()} — {property.title}. Tous droits réservés.</p>
-          <p className="flex items-center gap-1">
-            <span>Sénégal Immobilier • Plateforme Full-Stack Dynamique</span>
-          </p>
+          <div className="flex items-center gap-4 flex-wrap">
+            <ThemeToggle variant="compact" />
+            <PWAInstallButton variant="footer" />
+            <span className="text-emerald-400 font-medium">Développé par Chackor Organisation</span>
+          </div>
         </div>
       </div>
     </footer>

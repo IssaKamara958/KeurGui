@@ -6,15 +6,15 @@ export const INITIAL_PROPERTY_DATA: FullPropertyData = {
     title: 'Maison à vendre',
     slug: 'maison-a-vendre',
     description:
-      "Opportunité immobilière exceptionnelle au Sénégal. Maison à vendre d'une superficie de 25 m², issue de la succession des Descendants de Fatou Ba, proposée à 55 000 000 FCFA. Emplacement stratégique à fort potentiel d'aménagement ou de valorisation foncière. Dossier complet géré par le vendeur mandataire Abdou KAMARA. Visites et renseignements directs via WhatsApp.",
+      "Opportunité immobilière exceptionnelle au Sénégal. Maison à vendre d'une superficie de 600 m², proposée à 55 000 000 FCFA. Emplacement stratégique à fort potentiel d'aménagement ou de valorisation foncière. Dossier complet géré par le mandataire Mr KAMARA. Visites et renseignements directs via WhatsApp.",
     price: 55000000,
     currency: 'FCFA',
-    surface: 25,
+    surface: 600,
     unit: 'm²',
     property_type: 'Maison individuelle',
     status: 'available',
     country: 'Sénégal',
-    city: 'Thiès / Région de Dakar',
+    city: 'Thiès / Région de Thiès',
     neighborhood: 'Secteur résidentiel',
     address: 'Coordonnées et adresse précises communiquées lors de la prise de contact',
     landmark: 'Proximité des axes principaux et commodités',
@@ -25,7 +25,7 @@ export const INITIAL_PROPERTY_DATA: FullPropertyData = {
     published_at: '2026-03-01T10:00:00.000Z',
     seo_title: 'Maison à vendre — 55 000 000 FCFA | Sénégal',
     seo_description:
-      'Maison à vendre au prix de 55 000 000 FCFA (25 m²). Propriétaires : Descendants de Fatou Ba. Vendeur : Abdou KAMARA. Contact direct WhatsApp.',
+      'Maison à vendre au prix de 55 000 000 FCFA (600 m²). Mandataire : Mr KAMARA. Contact direct WhatsApp.',
     og_image:
       'https://images.unsplash.com/photo-1580587771525-78b9dba3b914?auto=format&fit=crop&w=1600&q=80',
     created_at: '2026-03-01T10:00:00.000Z',
@@ -43,7 +43,7 @@ export const INITIAL_PROPERTY_DATA: FullPropertyData = {
 
     seller: {
       id: 'seller-01',
-      name: 'Abdou KAMARA',
+      name: 'Mr KAMARA',
       email: 'contact@kamara-immobilier.sn',
       phone: '+221774125797',
       description: 'Mandataire agréé pour la vente du bien.',
@@ -57,7 +57,7 @@ export const INITIAL_PROPERTY_DATA: FullPropertyData = {
         seller_id: 'seller-01',
         type: 'whatsapp',
         value: '+221774125797',
-        label: 'WhatsApp principal (Abdou)',
+        label: 'WhatsApp principal (KAMARA)',
         is_primary: true,
         active: true,
         created_at: '2026-03-01T10:00:00.000Z',

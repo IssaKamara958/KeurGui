@@ -1,7 +1,7 @@
 import { INITIAL_PROPERTY_DATA } from '../data/initialData';
 import { Property, PropertyMedia, Contact, PropertyFeature } from '../types';
 
-const STORAGE_KEY = 'maison_a_vendre_property_v1';
+const STORAGE_KEY = 'maison_a_vendre_property_v2';
 
 export class PropertyService {
   private static localData: Property | null = null;

@@ -43,44 +43,44 @@ export const PriceBanner: React.FC<PriceBannerProps> = ({
   };
 
   return (
-    <section className="bg-white border-b border-neutral-200/70 pt-6 pb-8 sm:pt-10 sm:pb-12 shadow-xs">
+    <section className="bg-white dark:bg-neutral-900 border-b border-neutral-200/70 dark:border-neutral-800 pt-6 pb-8 sm:pt-10 sm:pb-12 shadow-xs transition-colors">
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
         <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6">
           {/* Main Info */}
           <div className="space-y-3">
-            <div className="flex flex-wrap items-center gap-2 text-xs font-semibold uppercase tracking-wider text-emerald-800">
-              <span className="inline-flex items-center gap-1.5 bg-emerald-50 text-emerald-700 px-3 py-1 rounded-lg border border-emerald-200/70">
-                <Sparkles className="w-3.5 h-3.5 text-emerald-600" />
+            <div className="flex flex-wrap items-center gap-2 text-xs font-semibold uppercase tracking-wider text-emerald-800 dark:text-emerald-300">
+              <span className="inline-flex items-center gap-1.5 bg-emerald-50 dark:bg-emerald-950/60 text-emerald-700 dark:text-emerald-300 px-3 py-1 rounded-lg border border-emerald-200/70 dark:border-emerald-800/60">
+                <Sparkles className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400" />
                 Vente Exclusive • Titre Foncier / Succession
               </span>
-              <span className="text-neutral-400">•</span>
-              <span className="text-neutral-600 font-medium">Réf : {property.slug}</span>
+              <span className="text-neutral-400 dark:text-neutral-600">•</span>
+              <span className="text-neutral-600 dark:text-neutral-400 font-medium">Réf : {property.slug}</span>
             </div>
 
-            <h1 className="text-2xl sm:text-4xl lg:text-5xl font-extrabold text-neutral-900 tracking-tight leading-tight">
+            <h1 className="text-2xl sm:text-4xl lg:text-5xl font-extrabold text-neutral-900 dark:text-neutral-50 tracking-tight leading-tight">
               {property.title}
             </h1>
 
-            <div className="flex flex-wrap items-center gap-4 text-sm text-neutral-600">
-              <div className="flex items-center gap-1.5 font-medium text-neutral-800">
-                <Maximize2 className="w-4 h-4 text-emerald-600" />
-                <span>Superficie : <strong className="text-neutral-900 font-bold">{property.surface} {property.unit}</strong></span>
+            <div className="flex flex-wrap items-center gap-4 text-sm text-neutral-600 dark:text-neutral-300">
+              <div className="flex items-center gap-1.5 font-medium text-neutral-800 dark:text-neutral-200">
+                <Maximize2 className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />
+                <span>Superficie : <strong className="text-neutral-900 dark:text-white font-bold">{property.surface} {property.unit}</strong></span>
               </div>
-              <span className="text-neutral-300">•</span>
-              <div className="flex items-center gap-1.5 font-medium text-neutral-800">
+              <span className="text-neutral-300 dark:text-neutral-700">•</span>
+              <div className="flex items-center gap-1.5 font-medium text-neutral-800 dark:text-neutral-200">
                 <MapPin className="w-4 h-4 text-rose-500" />
                 <span>{property.city || property.country}</span>
               </div>
-              <span className="text-neutral-300">•</span>
-              <div className="flex items-center gap-1.5 text-neutral-700">
-                <UserCheck className="w-4 h-4 text-sky-600" />
-                <span>Vendeur : <strong className="text-neutral-900">{property.seller?.name || 'Abdou KAMARA'}</strong></span>
+              <span className="text-neutral-300 dark:text-neutral-700">•</span>
+              <div className="flex items-center gap-1.5 text-neutral-700 dark:text-neutral-300">
+                <UserCheck className="w-4 h-4 text-sky-500" />
+                <span>Mandataire : <strong className="text-neutral-900 dark:text-neutral-100">{property.seller?.name || 'Mr KAMARA'}</strong></span>
               </div>
             </div>
           </div>
 
           {/* Visually Dominant Price Block (55 000 000 FCFA) */}
-          <div className="bg-neutral-900 text-white p-5 sm:p-6 rounded-2xl shadow-xl flex flex-col justify-between shrink-0 lg:min-w-[340px] border border-neutral-800">
+          <div className="bg-neutral-900 dark:bg-neutral-950 text-white p-5 sm:p-6 rounded-2xl shadow-xl flex flex-col justify-between shrink-0 lg:min-w-[340px] border border-neutral-800 dark:border-neutral-700/80 transition-colors">
             <div>
               <span className="text-xs font-semibold text-neutral-400 uppercase tracking-wider">
                 Prix officiel du bien

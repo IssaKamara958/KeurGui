@@ -30,19 +30,19 @@ export const TikTokSection: React.FC<TikTokSectionProps> = ({ media, onOpenAdmin
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-2">
           <Film className="w-5 h-5 text-rose-500" />
-          <h2 className="text-lg font-bold text-neutral-900">🎥 Vidéos de la maison (TikTok)</h2>
+          <h2 className="text-lg font-bold text-neutral-900 dark:text-neutral-100">🎥 Vidéos de la maison (TikTok)</h2>
         </div>
         {onOpenAdminMedia && (
           <button
             onClick={onOpenAdminMedia}
-            className="text-xs font-medium text-neutral-600 hover:text-neutral-900 hover:underline cursor-pointer"
+            className="text-xs font-medium text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-neutral-200 hover:underline cursor-pointer"
           >
             Gérer les vidéos
           </button>
         )}
       </div>
 
-      <p className="text-sm text-neutral-600">
+      <p className="text-sm text-neutral-600 dark:text-neutral-400">
         Découvrez la maison en vidéo interactive directement sur TikTok pour observer les volumes, l'éclairage et le quartier.
       </p>
 
@@ -51,7 +51,7 @@ export const TikTokSection: React.FC<TikTokSectionProps> = ({ media, onOpenAdmin
           <div
             key={video.id || idx}
             onClick={() => handleOpenTikTok(video)}
-            className="group relative bg-neutral-900 text-white rounded-2xl p-5 border border-neutral-800 shadow-md hover:border-emerald-500/50 transition-all cursor-pointer overflow-hidden flex flex-col justify-between"
+            className="group relative bg-neutral-900 dark:bg-neutral-900/90 text-white rounded-2xl p-5 border border-neutral-800 dark:border-neutral-800 shadow-md hover:border-emerald-500/50 transition-all cursor-pointer overflow-hidden flex flex-col justify-between"
           >
             {/* Background subtle accent */}
             <div className="absolute top-0 right-0 w-32 h-32 bg-rose-500/10 rounded-full blur-2xl group-hover:bg-emerald-500/20 transition-colors"></div>

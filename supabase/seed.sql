@@ -15,7 +15,7 @@ BEGIN
 
     -- 2. Insert Seller
     INSERT INTO public.sellers (name, email, phone, description)
-    VALUES ('Abdou KAMARA', 'contact@kamara-immobilier.sn', '+221774125797', 'Vendeur mandataire officiel')
+    VALUES ('Mr KAMARA', 'contact@kamara-immobilier.sn', '+221774125797', 'Mandataire officiel')
     RETURNING id INTO v_seller_id;
 
     -- 3. Insert Property
@@ -45,15 +45,15 @@ BEGIN
     VALUES (
         'Maison à vendre',
         'maison-a-vendre',
-        'Opportunité immobilière exceptionnelle au Sénégal. Maison à vendre d''une superficie de 25 m², issue de la succession des Descendants de Fatou Ba, proposée au prix officiel de 55 000 000 FCFA. Emplacement stratégique à fort potentiel. Vendeur officiel : Abdou KAMARA. Contact et visites directes via WhatsApp.',
+        'Opportunité immobilière exceptionnelle au Sénégal. Maison à vendre d''une superficie de 600 m², proposée à 55 000 000 FCFA. Emplacement stratégique à fort potentiel d''aménagement ou de valorisation foncière. Dossier complet géré par le mandataire Mr KAMARA. Visites et renseignements directs via WhatsApp.',
         55000000,
         'FCFA',
-        25,
+        600,
         'm²',
         'Maison individuelle',
         'available',
         'Sénégal',
-        'Thiès / Région de Dakar',
+        'Thiès / Région de Thiès',
         'Quartier résidentiel',
         'Adresse exacte communiquée après premier échange téléphonique ou WhatsApp',
         'Axes principaux et commerces à proximité immédiate',
@@ -62,7 +62,7 @@ BEGIN
         false,
         true,
         'Maison à vendre — 55 000 000 FCFA | Sénégal',
-        'Maison à vendre au prix de 55 000 000 FCFA (25 m²). Propriétaires : Descendants de Fatou Ba. Vendeur : Abdou KAMARA. Contact WhatsApp direct.',
+        'Maison à vendre au prix de 55 000 000 FCFA (600 m²). Mandataire : Mr KAMARA. Contact WhatsApp direct.',
         'https://images.unsplash.com/photo-1580587771525-78b9dba3b914?auto=format&fit=crop&w=1600&q=80'
     )
     RETURNING id INTO v_property_id;
@@ -78,7 +78,7 @@ BEGIN
     -- 6. Insert Contacts
     INSERT INTO public.contacts (seller_id, type, value, label, is_primary, active)
     VALUES
-        (v_seller_id, 'whatsapp', '+221774125797', 'WhatsApp principal (Abdou)', true, true),
+        (v_seller_id, 'whatsapp', '+221774125797', 'WhatsApp principal (KAMARA)', true, true),
         (v_seller_id, 'whatsapp', '+221776828441', 'WhatsApp secondaire', false, true),
         (v_seller_id, 'phone', '+221774125797', 'Appel direct', false, true);
 

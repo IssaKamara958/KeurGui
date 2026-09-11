@@ -51,19 +51,19 @@ export const PropertyFeatures: React.FC<PropertyFeaturesProps> = ({ property }) 
       {/* Distinction Propriétaires vs Vendeur (exigence clé du cahier des charges) */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         {/* Propriétaires */}
-        <div className="bg-amber-50/70 border border-amber-200/80 rounded-2xl p-5 relative overflow-hidden">
+        <div className="bg-amber-50/70 dark:bg-amber-950/20 border border-amber-200/80 dark:border-amber-900/40 rounded-2xl p-5 relative overflow-hidden transition-colors">
           <div className="flex items-start gap-3.5">
-            <div className="w-10 h-10 rounded-xl bg-amber-100 text-amber-800 flex items-center justify-center shrink-0">
+            <div className="w-10 h-10 rounded-xl bg-amber-100 dark:bg-amber-900/60 text-amber-800 dark:text-amber-300 flex items-center justify-center shrink-0">
               <Users className="w-5 h-5" />
             </div>
             <div>
-              <span className="text-xs font-semibold text-amber-800 uppercase tracking-wider">
+              <span className="text-xs font-semibold text-amber-800 dark:text-amber-400 uppercase tracking-wider">
                 Propriétaires légitimes
               </span>
-              <h3 className="text-base sm:text-lg font-bold text-neutral-900 mt-0.5">
+              <h3 className="text-base sm:text-lg font-bold text-neutral-900 dark:text-neutral-100 mt-0.5">
                 {property.owners[0]?.name || 'Descendants de Fatou Ba'}
               </h3>
-              <p className="text-xs sm:text-sm text-neutral-600 mt-1">
+              <p className="text-xs sm:text-sm text-neutral-600 dark:text-neutral-300 mt-1">
                 {property.owners[0]?.description || 'Propriété familiale et succession légale en règle.'}
               </p>
             </div>
@@ -71,19 +71,19 @@ export const PropertyFeatures: React.FC<PropertyFeaturesProps> = ({ property }) 
         </div>
 
         {/* Vendeur Mandataire */}
-        <div className="bg-emerald-50/70 border border-emerald-200/80 rounded-2xl p-5 relative overflow-hidden">
+        <div className="bg-emerald-50/70 dark:bg-emerald-950/20 border border-emerald-200/80 dark:border-emerald-900/40 rounded-2xl p-5 relative overflow-hidden transition-colors">
           <div className="flex items-start gap-3.5">
-            <div className="w-10 h-10 rounded-xl bg-emerald-100 text-emerald-800 flex items-center justify-center shrink-0">
+            <div className="w-10 h-10 rounded-xl bg-emerald-100 dark:bg-emerald-900/60 text-emerald-800 dark:text-emerald-300 flex items-center justify-center shrink-0">
               <UserCheck className="w-5 h-5" />
             </div>
             <div>
-              <span className="text-xs font-semibold text-emerald-800 uppercase tracking-wider">
-                Vendeur officiel mandaté
+              <span className="text-xs font-semibold text-emerald-800 dark:text-emerald-400 uppercase tracking-wider">
+                Mandataire officiel
               </span>
-              <h3 className="text-base sm:text-lg font-bold text-neutral-900 mt-0.5">
-                {property.seller?.name || 'Abdou KAMARA'}
+              <h3 className="text-base sm:text-lg font-bold text-neutral-900 dark:text-neutral-100 mt-0.5">
+                {property.seller?.name || 'Mr KAMARA'}
               </h3>
-              <p className="text-xs sm:text-sm text-neutral-600 mt-1">
+              <p className="text-xs sm:text-sm text-neutral-600 dark:text-neutral-300 mt-1">
                 {property.seller?.description || 'Interlocuteur direct pour toute visite et négociation.'}
               </p>
             </div>
@@ -92,21 +92,21 @@ export const PropertyFeatures: React.FC<PropertyFeaturesProps> = ({ property }) 
       </div>
 
       {/* Description du bien */}
-      <div className="bg-white rounded-2xl p-6 border border-neutral-200 shadow-xs space-y-3">
-        <h2 className="text-lg font-bold text-neutral-900 flex items-center gap-2">
-          <FileText className="w-5 h-5 text-emerald-600" />
+      <div className="bg-white dark:bg-neutral-900 rounded-2xl p-6 border border-neutral-200 dark:border-neutral-800 shadow-xs space-y-3 transition-colors">
+        <h2 className="text-lg font-bold text-neutral-900 dark:text-neutral-100 flex items-center gap-2">
+          <FileText className="w-5 h-5 text-emerald-600 dark:text-emerald-400" />
           <span>Description détaillée du bien</span>
         </h2>
-        <p className="text-sm sm:text-base text-neutral-700 leading-relaxed whitespace-pre-line">
+        <p className="text-sm sm:text-base text-neutral-700 dark:text-neutral-300 leading-relaxed whitespace-pre-line">
           {property.description ||
-            "Opportunité immobilière rare : maison à vendre d'une superficie de 25 m², vendue par la succession des Descendants de Fatou Ba au prix de 55 000 000 FCFA. Contactez directement Abdou KAMARA pour organiser une visite."}
+            "Opportunité immobilière exceptionnelle au Sénégal. Maison à vendre d'une superficie de 600 m², proposée à 55 000 000 FCFA. Emplacement stratégique à fort potentiel d'aménagement ou de valorisation foncière. Dossier complet géré par le mandataire Mr KAMARA. Visites et renseignements directs via WhatsApp."}
         </p>
       </div>
 
       {/* Caractéristiques dynamiques */}
       <div className="space-y-4">
-        <h2 className="text-lg font-bold text-neutral-900 flex items-center gap-2">
-          <Building className="w-5 h-5 text-emerald-600" />
+        <h2 className="text-lg font-bold text-neutral-900 dark:text-neutral-100 flex items-center gap-2">
+          <Building className="w-5 h-5 text-emerald-600 dark:text-emerald-400" />
           <span>Caractéristiques & équipements ({activeFeatures.length})</span>
         </h2>
 
@@ -114,13 +114,13 @@ export const PropertyFeatures: React.FC<PropertyFeaturesProps> = ({ property }) 
           {activeFeatures.map((feat) => (
             <div
               key={feat.id}
-              className="bg-white border border-neutral-200 rounded-2xl p-4 flex flex-col justify-between hover:border-emerald-300 transition-colors shadow-2xs"
+              className="bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 rounded-2xl p-4 flex flex-col justify-between hover:border-emerald-300 dark:hover:border-emerald-700 transition-colors shadow-2xs"
             >
               <div className="flex items-center justify-between mb-2">
-                <span className="text-xs text-neutral-500 font-medium">{feat.label}</span>
-                <div className="p-1.5 rounded-lg bg-neutral-50">{getIcon(feat.icon)}</div>
+                <span className="text-xs text-neutral-500 dark:text-neutral-400 font-medium">{feat.label}</span>
+                <div className="p-1.5 rounded-lg bg-neutral-50 dark:bg-neutral-800">{getIcon(feat.icon)}</div>
               </div>
-              <p className="text-sm sm:text-base font-bold text-neutral-900">{feat.value}</p>
+              <p className="text-sm sm:text-base font-bold text-neutral-900 dark:text-neutral-100">{feat.value}</p>
             </div>
           ))}
         </div>

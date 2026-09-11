@@ -1,6 +1,6 @@
 # 🏠 Application Immobilière Dynamique — Maison à Vendre (55 000 000 FCFA)
 
-Application web immobilière Full-Stack moderne, ultra-rapide et **100 % dynamique** pour la vente d'une maison au Sénégal (Superficie : 25 m², Prix officiel : 55 000 000 FCFA).
+Application web immobilière Full-Stack moderne, ultra-rapide et **100 % dynamique** pour la vente d'une maison au Sénégal (Superficie : 600 m², Prix officiel : 55 000 000 FCFA).
 
 ---
 
@@ -8,12 +8,14 @@ Application web immobilière Full-Stack moderne, ultra-rapide et **100 % dynamiq
 
 - **Titre du bien** : Maison à vendre
 - **Prix officiel** : **55 000 000 FCFA** *(affichage sans abréviation)*
-- **Superficie** : 25 m²
+- **Superficie** : 600 m²
+- **Localisation** : Thiès / Région de Thiès
 - **Propriétaires légitimes** : Descendants de Fatou Ba
-- **Vendeur mandataire** : Abdou KAMARA
+- **Mandataire** : Mr KAMARA
 - **Contacts WhatsApp officiels** :
   - Ligne principale : `+221774125797`
   - Ligne secondaire : `+221776828441`
+- **Développeur** : Chackor Organisation
 - **Géolocalisation** : Carte Leaflet (OpenStreetMap) avec géocodage interactif et lien Google Maps dynamique
 - **Vidéos** : Intégration et gestion des capsules vidéo TikTok
 - **Analytics en temps réel** : Suivi des vues, clics WhatsApp, Maps, partages et galerie

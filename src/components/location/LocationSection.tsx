@@ -112,12 +112,12 @@ export const LocationSection: React.FC<LocationSectionProps> = ({
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-2">
           <MapPin className="w-5 h-5 text-rose-500" />
-          <h2 className="text-lg font-bold text-neutral-900">Localisation du bien</h2>
+          <h2 className="text-lg font-bold text-neutral-900 dark:text-neutral-100">Localisation du bien</h2>
         </div>
         {onOpenLocationAdmin && (
           <button
             onClick={onOpenLocationAdmin}
-            className="text-xs font-medium text-neutral-600 hover:text-neutral-900 hover:underline cursor-pointer"
+            className="text-xs font-medium text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-neutral-200 hover:underline cursor-pointer"
           >
             Modifier GPS
           </button>
@@ -126,49 +126,49 @@ export const LocationSection: React.FC<LocationSectionProps> = ({
 
       {/* Verification notice */}
       {!property.location_verified ? (
-        <div className="flex items-center gap-3 p-3.5 rounded-xl bg-amber-50 border border-amber-200 text-amber-900 text-xs sm:text-sm">
-          <AlertTriangle className="w-4 h-4 sm:w-5 sm:h-5 text-amber-600 shrink-0" />
+        <div className="flex items-center gap-3 p-3.5 rounded-xl bg-amber-50 dark:bg-amber-950/30 border border-amber-200 dark:border-amber-900/40 text-amber-900 dark:text-amber-200 text-xs sm:text-sm transition-colors">
+          <AlertTriangle className="w-4 h-4 sm:w-5 sm:h-5 text-amber-600 dark:text-amber-400 shrink-0" />
           <div className="flex-1">
             <span className="font-bold">⚠️ Position géographique à confirmer</span> : l'emplacement exact
             sera transmis directement par le vendeur Abdou KAMARA lors de la prise de contact.
           </div>
         </div>
       ) : (
-        <div className="flex items-center gap-2.5 p-3 rounded-xl bg-emerald-50 border border-emerald-200 text-emerald-900 text-xs sm:text-sm">
-          <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
+        <div className="flex items-center gap-2.5 p-3 rounded-xl bg-emerald-50 dark:bg-emerald-950/30 border border-emerald-200 dark:border-emerald-900/40 text-emerald-900 dark:text-emerald-200 text-xs sm:text-sm transition-colors">
+          <CheckCircle2 className="w-4 h-4 text-emerald-600 dark:text-emerald-400 shrink-0" />
           <span>Position GPS vérifiée et validée par le vendeur.</span>
         </div>
       )}
 
       {/* Location Details Box */}
-      <div className="bg-white rounded-2xl border border-neutral-200 p-5 space-y-4 shadow-xs">
+      <div className="bg-white dark:bg-neutral-900 rounded-2xl border border-neutral-200 dark:border-neutral-800 p-5 space-y-4 shadow-xs transition-colors">
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm">
           <div>
-            <span className="text-xs text-neutral-500 font-semibold uppercase">Zone & Ville</span>
-            <p className="font-bold text-neutral-900 text-base mt-0.5">
+            <span className="text-xs text-neutral-500 dark:text-neutral-400 font-semibold uppercase">Zone & Ville</span>
+            <p className="font-bold text-neutral-900 dark:text-neutral-100 text-base mt-0.5">
               {property.city || 'Sénégal'}
               {property.neighborhood ? ` — ${property.neighborhood}` : ''}
             </p>
-            <p className="text-xs text-neutral-500 mt-1">{property.country}</p>
+            <p className="text-xs text-neutral-500 dark:text-neutral-400 mt-1">{property.country}</p>
           </div>
 
           <div>
-            <span className="text-xs text-neutral-500 font-semibold uppercase">Coordonnées GPS</span>
-            <p className="font-mono text-neutral-800 text-sm mt-0.5">
+            <span className="text-xs text-neutral-500 dark:text-neutral-400 font-semibold uppercase">Coordonnées GPS</span>
+            <p className="font-mono text-neutral-800 dark:text-neutral-200 text-sm mt-0.5">
               {hasCoordinates
                 ? `${property.latitude?.toFixed(5)}, ${property.longitude?.toFixed(5)}`
                 : 'Localisation GPS non renseignée'}
             </p>
             {property.landmark && (
-              <p className="text-xs text-neutral-500 mt-1">Repère : {property.landmark}</p>
+              <p className="text-xs text-neutral-500 dark:text-neutral-400 mt-1">Repère : {property.landmark}</p>
             )}
           </div>
         </div>
 
         {property.address && (
-          <div className="border-t border-neutral-100 pt-3 text-sm">
-            <span className="text-xs text-neutral-500 font-semibold uppercase">Adresse indicative</span>
-            <p className="text-neutral-800 mt-0.5">{property.address}</p>
+          <div className="border-t border-neutral-100 dark:border-neutral-800 pt-3 text-sm">
+            <span className="text-xs text-neutral-500 dark:text-neutral-400 font-semibold uppercase">Adresse indicative</span>
+            <p className="text-neutral-800 dark:text-neutral-200 mt-0.5">{property.address}</p>
           </div>
         )}
 
@@ -178,7 +178,7 @@ export const LocationSection: React.FC<LocationSectionProps> = ({
             <button
               id="open-google-maps-btn"
               onClick={handleOpenGoogleMaps}
-              className="inline-flex items-center gap-2 px-4 py-2.5 bg-neutral-900 hover:bg-neutral-800 text-white text-xs sm:text-sm font-semibold rounded-xl transition-all shadow-xs active:scale-95 cursor-pointer"
+              className="inline-flex items-center gap-2 px-4 py-2.5 bg-neutral-900 dark:bg-neutral-800 hover:bg-neutral-800 dark:hover:bg-neutral-700 text-white text-xs sm:text-sm font-semibold rounded-xl border border-transparent dark:border-neutral-700 transition-all shadow-xs active:scale-95 cursor-pointer"
             >
               <Navigation className="w-4 h-4 text-emerald-400" />
               <span>🗺️ Ouvrir dans Google Maps</span>
@@ -187,7 +187,7 @@ export const LocationSection: React.FC<LocationSectionProps> = ({
           ) : (
             <button
               onClick={() => showToast('Coordonnées GPS en attente de configuration', 'info')}
-              className="inline-flex items-center gap-2 px-4 py-2.5 bg-neutral-200 text-neutral-600 text-xs sm:text-sm font-medium rounded-xl cursor-not-allowed"
+              className="inline-flex items-center gap-2 px-4 py-2.5 bg-neutral-200 dark:bg-neutral-800 text-neutral-600 dark:text-neutral-400 text-xs sm:text-sm font-medium rounded-xl cursor-not-allowed"
             >
               <Navigation className="w-4 h-4" />
               <span>Localisation GPS non renseignée</span>
@@ -197,19 +197,19 @@ export const LocationSection: React.FC<LocationSectionProps> = ({
           <button
             id="copy-address-btn"
             onClick={handleCopyAddress}
-            className="inline-flex items-center gap-2 px-4 py-2.5 bg-neutral-100 hover:bg-neutral-200 text-neutral-800 text-xs sm:text-sm font-semibold rounded-xl transition-colors active:scale-95 cursor-pointer"
+            className="inline-flex items-center gap-2 px-4 py-2.5 bg-neutral-100 dark:bg-neutral-800 hover:bg-neutral-200 dark:hover:bg-neutral-700 text-neutral-800 dark:text-neutral-200 text-xs sm:text-sm font-semibold rounded-xl border border-transparent dark:border-neutral-700 transition-colors active:scale-95 cursor-pointer"
           >
-            <Copy className="w-4 h-4 text-neutral-600" />
+            <Copy className="w-4 h-4 text-neutral-600 dark:text-neutral-400" />
             <span>📋 Copier l'adresse</span>
           </button>
         </div>
       </div>
 
       {/* Interactive Leaflet Map Container */}
-      <div className="relative rounded-2xl overflow-hidden border border-neutral-200 shadow-sm bg-neutral-100 h-64 sm:h-80">
+      <div className="relative rounded-2xl overflow-hidden border border-neutral-200 dark:border-neutral-800 shadow-sm bg-neutral-100 dark:bg-neutral-900 h-64 sm:h-80">
         <div ref={mapContainerRef} className="w-full h-full z-0" />
-        <div className="absolute top-3 right-3 z-10 bg-white/90 backdrop-blur-md px-3 py-1.5 rounded-lg text-xs font-semibold text-neutral-800 shadow-sm border border-neutral-200 flex items-center gap-1.5">
-          <Compass className="w-3.5 h-3.5 text-emerald-600" />
+        <div className="absolute top-3 right-3 z-10 bg-white/90 dark:bg-neutral-900/90 backdrop-blur-md px-3 py-1.5 rounded-lg text-xs font-semibold text-neutral-800 dark:text-neutral-200 shadow-sm border border-neutral-200 dark:border-neutral-700 flex items-center gap-1.5">
+          <Compass className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400" />
           <span>OpenStreetMap • Sénégal</span>
         </div>
       </div>
