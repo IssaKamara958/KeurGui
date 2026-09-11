@@ -1,7 +1,19 @@
 import { INITIAL_PROPERTY_DATA } from '../data/initialData';
 import { Property, PropertyMedia, Contact, PropertyFeature } from '../types';
 
-const STORAGE_KEY = 'maison_a_vendre_property_v2';
+const STORAGE_KEY = 'maison_a_vendre_property_v3';
+
+function sanitizeProperty(property: Property): Property {
+  if (property && property.features) {
+    property.features = property.features.map((feat) => {
+      if ((feat.id === 'feat-01' || feat.label.toLowerCase() === 'superficie') && (feat.value === '25 m²' || feat.value === '25')) {
+        return { ...feat, value: '600 m²' };
+      }
+      return feat;
+    });
+  }
+  return property;
+}
 
 export class PropertyService {
   private static localData: Property | null = null;
@@ -56,13 +68,14 @@ Merci.`;
       if (response.ok) {
         const json = await response.json();
         if (json.success && json.data) {
-          this.localData = json.data;
+          const sanitized = sanitizeProperty(json.data);
+          this.localData = sanitized;
           try {
-            localStorage.setItem(STORAGE_KEY, JSON.stringify(json.data));
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(sanitized));
           } catch (e) {
             // ignore localStorage quota errors
           }
-          return json.data;
+          return sanitized;
         }
       }
     } catch (err) {
@@ -73,7 +86,7 @@ Merci.`;
     try {
       const cached = localStorage.getItem(STORAGE_KEY);
       if (cached) {
-        const parsed = JSON.parse(cached);
+        const parsed = sanitizeProperty(JSON.parse(cached));
         this.localData = parsed;
         return parsed;
       }
@@ -82,7 +95,7 @@ Merci.`;
     }
 
     // Default fallback
-    this.localData = JSON.parse(JSON.stringify(INITIAL_PROPERTY_DATA.property));
+    this.localData = sanitizeProperty(JSON.parse(JSON.stringify(INITIAL_PROPERTY_DATA.property)));
     return this.localData as Property;
   }
 

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Property } from '../../types';
 import { PropertyService } from '../../services/propertyService';
-import { Home, ShieldCheck, Lock, Heart, MessageSquare } from 'lucide-react';
+import { Home, ShieldCheck, Lock, Heart, MessageSquare, Handshake } from 'lucide-react';
 import { PWAInstallButton } from '../pwa/PWAInstallButton';
 import { ThemeToggle } from '../ui/ThemeToggle';
 
@@ -52,19 +52,26 @@ export const Footer: React.FC<FooterProps> = ({ property, onOpenAdmin }) => {
             </div>
           </div>
 
-          {/* Administration link and reassurance */}
+          {/* Administration & Partnership link */}
           <div className="space-y-3 text-xs">
-            <h4 className="text-white font-bold text-sm">Espace Vendeur</h4>
+            <h4 className="text-white font-bold text-sm">Espace Mandat & Partenaires</h4>
             <p className="text-neutral-400">
-              Accès réservé pour la mise à jour des prix, photos réelles, vidéos TikTok et coordonnées GPS.
+              Vous possédez une maison ou un terrain à vendre ? Soumettez votre dossier en partenariat (Commission 12%, étude sous 48h).
             </p>
-            <div className="flex flex-wrap items-center gap-3">
+            <div className="flex flex-wrap items-center gap-2.5">
+              <a
+                href="#partenariat-vendeurs"
+                className="inline-flex items-center gap-1.5 px-3 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold transition-colors cursor-pointer shadow-xs"
+              >
+                <Handshake className="w-3.5 h-3.5" />
+                <span>Partenariat Vendeur (12%)</span>
+              </a>
               <button
                 onClick={onOpenAdmin}
-                className="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl bg-neutral-800 hover:bg-neutral-700 text-neutral-200 text-xs font-semibold border border-neutral-700 transition-colors cursor-pointer"
+                className="inline-flex items-center gap-1.5 px-3 py-2 rounded-xl bg-neutral-800 hover:bg-neutral-700 text-neutral-200 text-xs font-semibold border border-neutral-700 transition-colors cursor-pointer"
               >
                 <Lock className="w-3.5 h-3.5 text-amber-400" />
-                <span>Accéder à l'Administration</span>
+                <span>Administration</span>
               </button>
             </div>
           </div>

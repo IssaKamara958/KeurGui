@@ -150,7 +150,7 @@
         "id": "feat-01",
         "property_id": "maison-fatou-ba-001",
         "label": "Superficie",
-        "value": "25 m²",
+        "value": "600 m²",
         "icon": "ruler",
         "display_order": 1,
         "active": true
@@ -203,7 +203,7 @@
     ]
   },
   "analytics": {
-    "page_views": 1247,
+    "page_views": 1251,
     "whatsapp_clicks": 87,
     "phone_clicks": 23,
     "map_clicks": 42,
@@ -212,6 +212,46 @@
     "gallery_views": 310,
     "total_interactions": 543,
     "recent_events": [
+      {
+        "id": "evt-1789153696535",
+        "property_id": "maison-fatou-ba-001",
+        "event_type": "page_view",
+        "metadata": {
+          "property_id": "maison-fatou-ba-001",
+          "referrer": "https://aistudio.google.com/"
+        },
+        "created_at": "2026-09-11T19:08:16.535Z"
+      },
+      {
+        "id": "evt-1789153688945",
+        "property_id": "maison-fatou-ba-001",
+        "event_type": "page_view",
+        "metadata": {
+          "property_id": "maison-fatou-ba-001",
+          "referrer": "https://aistudio.google.com/"
+        },
+        "created_at": "2026-09-11T19:08:08.945Z"
+      },
+      {
+        "id": "evt-1789152828168",
+        "property_id": "maison-fatou-ba-001",
+        "event_type": "page_view",
+        "metadata": {
+          "property_id": "maison-fatou-ba-001",
+          "referrer": "https://aistudio.google.com/"
+        },
+        "created_at": "2026-09-11T18:53:48.168Z"
+      },
+      {
+        "id": "evt-1789152812972",
+        "property_id": "maison-fatou-ba-001",
+        "event_type": "page_view",
+        "metadata": {
+          "property_id": "maison-fatou-ba-001",
+          "referrer": "https://ais-dev-usiar2ihzpje6uyma2rdqu-149636933501.europe-west2.run.app/"
+        },
+        "created_at": "2026-09-11T18:53:32.972Z"
+      },
       {
         "id": "evt-1789086871318",
         "property_id": "maison-fatou-ba-001",

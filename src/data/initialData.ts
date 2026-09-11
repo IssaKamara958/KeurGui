@@ -160,7 +160,7 @@ export const INITIAL_PROPERTY_DATA: FullPropertyData = {
         id: 'feat-01',
         property_id: 'maison-fatou-ba-001',
         label: 'Superficie',
-        value: '25 m²',
+        value: '600 m²',
         icon: 'ruler',
         display_order: 1,
         active: true,

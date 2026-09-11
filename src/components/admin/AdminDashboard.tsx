@@ -28,8 +28,12 @@ import {
   User,
   CheckCircle2,
   AlertTriangle,
+  Handshake,
+  FileText,
+  Download,
 } from 'lucide-react';
 import L from 'leaflet';
+import { AdminPartnershipsTab } from './AdminPartnershipsTab';
 
 interface AdminDashboardProps {
   property: Property;
@@ -37,7 +41,7 @@ interface AdminDashboardProps {
   onPropertyUpdated: (updated: Property) => void;
 }
 
-type AdminTab = 'dashboard' | 'general' | 'location' | 'media' | 'contacts' | 'features';
+type AdminTab = 'dashboard' | 'partnerships' | 'general' | 'location' | 'media' | 'contacts' | 'features';
 
 export const AdminDashboard: React.FC<AdminDashboardProps> = ({
   property,
@@ -537,6 +541,18 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
               </button>
 
               <button
+                onClick={() => setActiveTab('partnerships')}
+                className={`flex items-center gap-2.5 px-3 py-2.5 rounded-xl text-xs font-semibold transition-colors shrink-0 cursor-pointer ${
+                  activeTab === 'partnerships'
+                    ? 'bg-neutral-900 dark:bg-emerald-600 text-white shadow-xs'
+                    : 'text-neutral-700 dark:text-neutral-300 hover:bg-neutral-200/70 dark:hover:bg-neutral-800'
+                }`}
+              >
+                <Handshake className="w-4 h-4 text-emerald-400" />
+                <span>Partenariats Vendeurs (12%)</span>
+              </button>
+
+              <button
                 onClick={() => setActiveTab('general')}
                 className={`flex items-center gap-2.5 px-3 py-2.5 rounded-xl text-xs font-semibold transition-colors shrink-0 cursor-pointer ${
                   activeTab === 'general'
@@ -614,10 +630,35 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
               {activeTab === 'dashboard' && (
                 <div className="space-y-6">
                   <div>
-                    <h3 className="text-lg font-bold text-neutral-900">Tableau de bord de performance</h3>
+                    <h3 className="text-lg font-bold text-neutral-900 dark:text-white">Tableau de bord de performance</h3>
                     <p className="text-xs text-neutral-500">
                       Suivi en temps réel des consultations et conversions WhatsApp du bien.
                     </p>
+                  </div>
+
+                  {/* Quick Partnership & PDF Contracts Action Banner */}
+                  <div className="p-4 bg-linear-to-r from-emerald-50 to-teal-50 dark:from-emerald-950/40 dark:to-teal-950/30 border border-emerald-200 dark:border-emerald-800/80 rounded-2xl flex flex-col sm:flex-row sm:items-center justify-between gap-3 shadow-xs">
+                    <div className="flex items-center gap-3">
+                      <div className="w-10 h-10 rounded-xl bg-emerald-600 text-white flex items-center justify-center font-bold shrink-0 shadow-xs">
+                        <Handshake className="w-5 h-5" />
+                      </div>
+                      <div>
+                        <h4 className="font-bold text-sm text-emerald-950 dark:text-emerald-100 flex items-center gap-2">
+                          <span>Partenariats Vendeurs & Contrats de Mandat (12%)</span>
+                        </h4>
+                        <p className="text-xs text-emerald-800/80 dark:text-emerald-300 mt-0.5">
+                          Consultez les dossiers reçus sous 48h et générez les contrats officiels PDF avec commission standard de 12%.
+                        </p>
+                      </div>
+                    </div>
+                    <button
+                      id="btn-overview-manage-partnerships"
+                      onClick={() => setActiveTab('partnerships')}
+                      className="px-4 py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold rounded-xl shadow-xs cursor-pointer shrink-0 transition-all hover:scale-105 active:scale-95 flex items-center gap-2"
+                    >
+                      <Download className="w-3.5 h-3.5" />
+                      <span>Gérer & Générer Contrats PDF</span>
+                    </button>
                   </div>
 
                   {/* Stat Cards */}
@@ -693,6 +734,11 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
                     </div>
                   </div>
                 </div>
+              )}
+
+              {/* TAB 1.5: PARTNERSHIP APPLICATIONS REVIEW & 12% CONTRACTS */}
+              {activeTab === 'partnerships' && (
+                <AdminPartnershipsTab />
               )}
 
               {/* TAB 2: GENERAL PROPERTY EDIT */}

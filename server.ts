@@ -3,11 +3,13 @@ import path from 'path';
 import fs from 'fs';
 import { createServer as createViteServer } from 'vite';
 import { INITIAL_PROPERTY_DATA } from './src/data/initialData';
-import { FullPropertyData, PropertyMedia, Contact, PropertyFeature, AnalyticsEvent } from './src/types';
+import { INITIAL_PARTNERSHIP_APPLICATIONS } from './src/data/initialPartnerships';
+import { FullPropertyData, PropertyMedia, Contact, PropertyFeature, AnalyticsEvent, PartnershipApplication } from './src/types';
 
 const PORT = 3000;
 const DATA_DIR = path.join(process.cwd(), 'data');
 const DB_FILE = path.join(DATA_DIR, 'property.json');
+const PARTNERSHIPS_FILE = path.join(DATA_DIR, 'partnerships.json');
 
 // Ensure data directory exists
 if (!fs.existsSync(DATA_DIR)) {
@@ -16,6 +18,32 @@ if (!fs.existsSync(DATA_DIR)) {
 
 // In-memory / persisted storage
 let dbData: FullPropertyData;
+let partnershipsData: PartnershipApplication[] = [];
+
+function loadPartnerships(): PartnershipApplication[] {
+  try {
+    if (fs.existsSync(PARTNERSHIPS_FILE)) {
+      const content = fs.readFileSync(PARTNERSHIPS_FILE, 'utf-8');
+      const parsed = JSON.parse(content);
+      if (Array.isArray(parsed)) {
+        return parsed;
+      }
+    }
+  } catch (err) {
+    console.error('Failed to load partnerships file:', err);
+  }
+  const initial = JSON.parse(JSON.stringify(INITIAL_PARTNERSHIP_APPLICATIONS));
+  savePartnerships(initial);
+  return initial;
+}
+
+function savePartnerships(data: PartnershipApplication[]): void {
+  try {
+    fs.writeFileSync(PARTNERSHIPS_FILE, JSON.stringify(data, null, 2), 'utf-8');
+  } catch (err) {
+    console.error('Failed to save partnerships file:', err);
+  }
+}
 
 function loadDatabase(): FullPropertyData {
   try {
@@ -23,6 +51,19 @@ function loadDatabase(): FullPropertyData {
       const fileContent = fs.readFileSync(DB_FILE, 'utf-8');
       const parsed = JSON.parse(fileContent);
       if (parsed && parsed.property) {
+        if (Array.isArray(parsed.features)) {
+          let updated = false;
+          parsed.features = parsed.features.map((feat: PropertyFeature) => {
+            if ((feat.id === 'feat-01' || feat.label.toLowerCase() === 'superficie') && (feat.value === '25 m²' || feat.value === '25')) {
+              updated = true;
+              return { ...feat, value: '600 m²' };
+            }
+            return feat;
+          });
+          if (updated) {
+            saveDatabase(parsed);
+          }
+        }
         return parsed;
       }
     }
@@ -44,6 +85,7 @@ function saveDatabase(data: FullPropertyData): void {
 }
 
 dbData = loadDatabase();
+partnershipsData = loadPartnerships();
 
 async function startServer() {
   const app = express();
@@ -326,7 +368,115 @@ async function startServer() {
   app.post('/api/admin/reset', (req: Request, res: Response) => {
     dbData = JSON.parse(JSON.stringify(INITIAL_PROPERTY_DATA));
     saveDatabase(dbData);
+    partnershipsData = JSON.parse(JSON.stringify(INITIAL_PARTNERSHIP_APPLICATIONS));
+    savePartnerships(partnershipsData);
     res.json({ success: true, message: 'Données réinitialisées avec succès', data: dbData.property });
+  });
+
+  // 10. Partnership Endpoints (Vente de Maisons & Terrains)
+  app.get('/api/partnerships', (req: Request, res: Response) => {
+    res.json({
+      success: true,
+      count: partnershipsData.length,
+      data: partnershipsData,
+    });
+  });
+
+  app.get('/api/partnerships/:id', (req: Request, res: Response) => {
+    const { id } = req.params;
+    const cleanId = id.toUpperCase();
+    const appMatch = partnershipsData.find((p) => p.id.toUpperCase() === cleanId);
+    if (!appMatch) {
+      return res.status(404).json({ success: false, error: 'Dossier de partenariat introuvable' });
+    }
+    res.json({ success: true, data: appMatch });
+  });
+
+  app.post('/api/partnerships', (req: Request, res: Response) => {
+    const body = req.body;
+    const randomSuffix = Math.floor(1000 + Math.random() * 9000);
+    const newId = body.id || `PART-${new Date().getFullYear()}-${randomSuffix}`;
+    const minPrice = Number(body.minimum_price) || 0;
+    const commission12 = Math.round(minPrice * 0.12);
+
+    const newApp: PartnershipApplication = {
+      id: newId,
+      created_at: new Date().toISOString(),
+      updated_at: new Date().toISOString(),
+      status: 'pending_review',
+      review_deadline_hours: 48,
+      applicant_role: body.applicant_role || 'proprietaire',
+      owner_full_name: body.owner_full_name || 'Non renseigné',
+      owner_phone: body.owner_phone || '',
+      owner_email: body.owner_email || '',
+      is_mandated: !!body.is_mandated,
+      mandatary_name: body.mandatary_name || '',
+      mandatary_phone: body.mandatary_phone || '',
+      mandatary_cin: body.mandatary_cin || '',
+      property_type: body.property_type || 'maison',
+      title: body.title || 'Bien immobilier à vendre',
+      description: body.description || '',
+      surface: Number(body.surface) || 0,
+      surface_unit: body.surface_unit || 'm²',
+      minimum_price: minPrice,
+      estimated_commission: commission12,
+      currency: body.currency || 'FCFA',
+      city: body.city || 'Thiès',
+      neighborhood: body.neighborhood || '',
+      address: body.address || '',
+      landmark: body.landmark || '',
+      latitude: body.latitude ? Number(body.latitude) : undefined,
+      longitude: body.longitude ? Number(body.longitude) : undefined,
+      google_maps_url: body.google_maps_url || '',
+      title_deed_type: body.title_deed_type || 'titre_foncier',
+      title_deed_number: body.title_deed_number || '',
+      documents: Array.isArray(body.documents) ? body.documents : [],
+      contract: body.contract || undefined,
+    };
+
+    partnershipsData.unshift(newApp);
+    savePartnerships(partnershipsData);
+    res.status(201).json({
+      success: true,
+      message: 'Votre souscription de partenariat a été enregistrée avec succès. Étude du dossier sous 48h.',
+      data: newApp,
+    });
+  });
+
+  app.put('/api/partnerships/:id/status', (req: Request, res: Response) => {
+    const { id } = req.params;
+    const { status, review_notes, rejection_reason, contract } = req.body;
+    const index = partnershipsData.findIndex((p) => p.id.toUpperCase() === id.toUpperCase());
+
+    if (index === -1) {
+      return res.status(404).json({ success: false, error: 'Dossier introuvable' });
+    }
+
+    const current = partnershipsData[index];
+    const updated: PartnershipApplication = {
+      ...current,
+      status: status || current.status,
+      reviewed_at: new Date().toISOString(),
+      updated_at: new Date().toISOString(),
+      review_notes: review_notes !== undefined ? review_notes : current.review_notes,
+      rejection_reason: rejection_reason !== undefined ? rejection_reason : current.rejection_reason,
+      contract: contract !== undefined ? contract : current.contract,
+    };
+
+    partnershipsData[index] = updated;
+    savePartnerships(partnershipsData);
+    res.json({
+      success: true,
+      message: 'Statut du partenariat mis à jour',
+      data: updated,
+    });
+  });
+
+  app.delete('/api/partnerships/:id', (req: Request, res: Response) => {
+    const { id } = req.params;
+    partnershipsData = partnershipsData.filter((p) => p.id.toUpperCase() !== id.toUpperCase());
+    savePartnerships(partnershipsData);
+    res.json({ success: true, message: 'Dossier de partenariat supprimé' });
   });
 
   // Vite middleware for development or Static server for production

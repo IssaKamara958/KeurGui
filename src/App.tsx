@@ -11,6 +11,7 @@ import { PropertyFeatures } from './components/property/PropertyFeatures';
 import { LocationSection } from './components/location/LocationSection';
 import { TikTokSection } from './components/tiktok/TikTokSection';
 import { WhatsAppContacts } from './components/contact/WhatsAppContacts';
+import { PartnershipSection } from './components/partnership/PartnershipSection';
 import { Footer } from './components/layout/Footer';
 import { MobileStickyBar } from './components/layout/MobileStickyBar';
 import { AdminDashboard } from './components/admin/AdminDashboard';
@@ -78,7 +79,11 @@ export default function App() {
       <ToastProvider>
         <div className="min-h-screen bg-neutral-50 dark:bg-neutral-950 text-neutral-900 dark:text-neutral-100 flex flex-col selection:bg-emerald-500 selection:text-white font-sans transition-colors duration-200">
           {/* Top Header */}
-          <Header property={property} onOpenAdmin={() => setIsAdminOpen(true)} />
+          <Header
+            property={property}
+            onOpenAdmin={() => setIsAdminOpen(true)}
+            onOpenPartnership={() => scrollToSection('partenariat-vendeurs')}
+          />
 
           {/* Hero & Dominant Price Section */}
           <PriceBanner
@@ -165,6 +170,9 @@ export default function App() {
               property={property}
               onOpenContactAdmin={() => setIsAdminOpen(true)}
             />
+
+            {/* Section 6: Seller Partnership & Mandates (12% Commission, 48h review, standard contract) */}
+            <PartnershipSection />
           </main>
 
           {/* Sticky Mobile Contact Bar */}

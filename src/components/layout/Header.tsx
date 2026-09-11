@@ -3,16 +3,17 @@ import { Property } from '../../types';
 import { PropertyService } from '../../services/propertyService';
 import { AnalyticsService } from '../../services/analyticsService';
 import { useToast } from '../ui/Toast';
-import { Share2, Lock, Home, Sparkles } from 'lucide-react';
+import { Share2, Lock, Home, Sparkles, Handshake } from 'lucide-react';
 import { PWAInstallButton } from '../pwa/PWAInstallButton';
 import { ThemeToggle } from '../ui/ThemeToggle';
 
 interface HeaderProps {
   property: Property;
   onOpenAdmin: () => void;
+  onOpenPartnership?: () => void;
 }
 
-export const Header: React.FC<HeaderProps> = ({ property, onOpenAdmin }) => {
+export const Header: React.FC<HeaderProps> = ({ property, onOpenAdmin, onOpenPartnership }) => {
   const { showToast } = useToast();
 
   const handleShare = async () => {
@@ -101,6 +102,20 @@ export const Header: React.FC<HeaderProps> = ({ property, onOpenAdmin }) => {
 
           {/* PWA In-App Install Button */}
           <PWAInstallButton variant="compact" />
+
+          {/* Partnership Seller Link */}
+          {onOpenPartnership && (
+            <button
+              id="header-partnership-button"
+              onClick={onOpenPartnership}
+              className="flex items-center gap-1.5 px-3 py-2 text-xs sm:text-sm font-semibold text-emerald-900 dark:text-emerald-200 bg-emerald-100/90 dark:bg-emerald-950/60 hover:bg-emerald-200 dark:hover:bg-emerald-900/60 border border-emerald-300/80 dark:border-emerald-800/80 rounded-xl transition-all active:scale-95 cursor-pointer shadow-xs"
+              title="Vendre votre maison ou terrain (Partenariat 12%)"
+            >
+              <Handshake className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-emerald-700 dark:text-emerald-400 shrink-0" />
+              <span className="hidden md:inline">Partenariat (12%)</span>
+              <span className="md:hidden">Partenaire</span>
+            </button>
+          )}
 
           <button
             id="share-button"
