@@ -8,7 +8,10 @@ export type AnalyticsEventType =
   | 'map_click'
   | 'share_click'
   | 'tiktok_click'
-  | 'gallery_view';
+  | 'gallery_view'
+  | 'push_subscribe'
+  | 'push_unsubscribe'
+  | 'push_notification_sent';
 
 export interface Owner {
   id: string;
@@ -234,3 +237,31 @@ export interface PartnershipApplication {
   // Generated official contract (when validated)
   contract?: PartnershipContract;
 }
+
+// Push Notifications (PWA)
+export type PushNotificationCategory = 'price_change' | 'purchase_step' | 'legal_document' | 'system';
+
+export interface PushNotificationItem {
+  id: string;
+  title: string;
+  body: string;
+  category: PushNotificationCategory;
+  timestamp: string;
+  read: boolean;
+  url?: string;
+  icon?: string;
+  badgeText?: string;
+}
+
+export interface PushSubscriptionSettings {
+  isSubscribed: boolean;
+  notifyPriceChange: boolean;
+  notifyPurchaseStep: boolean;
+  notifyLegalDocuments: boolean;
+  subscriberName?: string;
+  subscriberPhone?: string;
+  subscriberEmail?: string;
+  subscribedAt?: string;
+  permissionStatus: 'default' | 'granted' | 'denied' | 'unsupported';
+}
+

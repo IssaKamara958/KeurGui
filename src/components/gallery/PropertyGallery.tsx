@@ -63,7 +63,7 @@ export const PropertyGallery: React.FC<PropertyGalleryProps> = ({ media, onOpenP
   }
 
   return (
-    <div className="space-y-4">
+    <div id="galerie-photos" className="space-y-4">
       {/* Header bar of gallery */}
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-2">

@@ -47,7 +47,7 @@ export const PropertyFeatures: React.FC<PropertyFeaturesProps> = ({ property }) 
   const activeFeatures = property.features.filter((f) => f.active);
 
   return (
-    <div className="space-y-8">
+    <div id="caracteristiques" className="space-y-8">
       {/* Distinction Propriétaires vs Vendeur (exigence clé du cahier des charges) */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         {/* Propriétaires */}

@@ -1,11 +1,13 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Property } from '../../types';
 import { PropertyService } from '../../services/propertyService';
 import { AnalyticsService } from '../../services/analyticsService';
 import { useToast } from '../ui/Toast';
-import { Share2, Lock, Home, Sparkles, Handshake } from 'lucide-react';
+import { Share2, Lock, Home, Sparkles, Handshake, MessageCircle } from 'lucide-react';
 import { PWAInstallButton } from '../pwa/PWAInstallButton';
 import { ThemeToggle } from '../ui/ThemeToggle';
+import { ScrollCompletionBar } from './ScrollCompletionBar';
+import { QuickShareModal } from './QuickShareModal';
 
 interface HeaderProps {
   property: Property;
@@ -15,31 +17,24 @@ interface HeaderProps {
 
 export const Header: React.FC<HeaderProps> = ({ property, onOpenAdmin, onOpenPartnership }) => {
   const { showToast } = useToast();
+  const [isShareModalOpen, setIsShareModalOpen] = useState(false);
+
+  const handleQuickWhatsAppShare = async () => {
+    const currentUrl = typeof window !== 'undefined' ? window.location.href : '';
+    const priceFormatted = PropertyService.formatPrice(property.price, property.currency);
+    const text = `🏡 *Keur Mame Fatou* (Votre confort, notre priorité)\n` +
+      `Maison de ${property.surface} ${property.unit} à ${property.city || property.country} au prix de ${priceFormatted}.\n` +
+      `Dossier vérifié à 100% (Titre, Délibération & Bornage 600m²).\n` +
+      `Mandataire officiel : ${property.seller.name} (${property.seller.phone}).\n\n` +
+      `👉 Voir l'annonce complète : ${currentUrl}`;
+    
+    await AnalyticsService.trackEvent('share_click', { platform: 'whatsapp_header_quick', url: currentUrl });
+    window.open(`https://api.whatsapp.com/send?text=${encodeURIComponent(text)}`, '_blank', 'noopener,noreferrer');
+  };
 
   const handleShare = async () => {
     await AnalyticsService.trackEvent('share_click', { url: window.location.href });
-    if (navigator.share) {
-      try {
-        await navigator.share({
-          title: 'Keur Mame Fatou',
-          text: `Keur Mame Fatou (Votre confort, notre priorité) — Maison de ${property.surface} ${property.unit} à ${property.city} au prix de ${PropertyService.formatPrice(
-            property.price,
-            property.currency
-          )}. Mandataire : ${property.seller.name}`,
-          url: window.location.href,
-        });
-        showToast('Lien partagé avec succès !', 'success');
-      } catch (err) {
-        // User cancelled or share failed
-      }
-    } else {
-      try {
-        await navigator.clipboard.writeText(window.location.href);
-        showToast('Lien de la maison copié dans le presse-papiers !', 'success');
-      } catch (err) {
-        showToast('Impossible de copier le lien', 'error');
-      }
-    }
+    setIsShareModalOpen(true);
   };
 
   const getStatusBadge = () => {
@@ -122,13 +117,25 @@ export const Header: React.FC<HeaderProps> = ({ property, onOpenAdmin, onOpenPar
             </button>
           )}
 
+          {/* Quick WhatsApp Share Button */}
+          <button
+            id="header-quick-whatsapp-share"
+            onClick={handleQuickWhatsAppShare}
+            className="flex items-center gap-1.5 px-3 py-2 text-xs sm:text-sm font-semibold text-white bg-emerald-600 hover:bg-emerald-700 rounded-xl transition-all active:scale-95 cursor-pointer shadow-xs"
+            title="Partager directement l'annonce sur WhatsApp"
+          >
+            <MessageCircle className="w-3.5 h-3.5 sm:w-4 sm:h-4 fill-current shrink-0" />
+            <span className="hidden md:inline">WhatsApp</span>
+          </button>
+
+          {/* All Networks Share Button */}
           <button
             id="share-button"
             onClick={handleShare}
-            className="flex items-center gap-2 px-3 sm:px-4 py-2 text-xs sm:text-sm font-medium text-neutral-700 dark:text-neutral-200 bg-neutral-100 dark:bg-neutral-800 hover:bg-neutral-200 dark:hover:bg-neutral-700 border border-transparent dark:border-neutral-700 rounded-xl transition-colors active:scale-95 cursor-pointer shadow-xs"
-            title="Partager cette annonce"
+            className="flex items-center gap-1.5 sm:gap-2 px-3 sm:px-4 py-2 text-xs sm:text-sm font-medium text-neutral-700 dark:text-neutral-200 bg-neutral-100 dark:bg-neutral-800 hover:bg-neutral-200 dark:hover:bg-neutral-700 border border-transparent dark:border-neutral-700 rounded-xl transition-colors active:scale-95 cursor-pointer shadow-xs"
+            title="Partager sur d'autres réseaux sociaux ou copier le lien"
           >
-            <Share2 className="w-4 h-4 text-neutral-600 dark:text-neutral-400" />
+            <Share2 className="w-4 h-4 text-neutral-600 dark:text-neutral-400 shrink-0" />
             <span className="hidden sm:inline">Partager</span>
           </button>
 
@@ -144,6 +151,18 @@ export const Header: React.FC<HeaderProps> = ({ property, onOpenAdmin, onOpenPar
           </button>
         </div>
       </div>
+      {/* Scroll Reading Progress & Listing Completeness Bar */}
+      <ScrollCompletionBar
+        property={property}
+        onOpenShare={() => setIsShareModalOpen(true)}
+      />
+
+      {/* Quick Share Modal (WhatsApp, Facebook, X, Telegram, Email, Copy Link) */}
+      <QuickShareModal
+        property={property}
+        isOpen={isShareModalOpen}
+        onClose={() => setIsShareModalOpen(false)}
+      />
     </header>
   );
 };

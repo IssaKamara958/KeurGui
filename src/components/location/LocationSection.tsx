@@ -11,6 +11,8 @@ import {
   CheckCircle2,
   Navigation,
   Compass,
+  Clock,
+  Calendar,
 } from 'lucide-react';
 import L from 'leaflet';
 
@@ -109,11 +111,31 @@ export const LocationSection: React.FC<LocationSectionProps> = ({
 
   return (
     <section id="location-section" className="space-y-4">
-      <div className="flex items-center justify-between">
-        <div className="flex items-center gap-2">
-          <MapPin className="w-5 h-5 text-rose-500" />
-          <h2 className="text-lg font-bold text-neutral-900 dark:text-neutral-100">Localisation du bien</h2>
+      <div className="flex items-center justify-between flex-wrap gap-2.5">
+        <div className="flex items-center gap-2.5 flex-wrap">
+          <div className="flex items-center gap-2">
+            <MapPin className="w-5 h-5 text-rose-500" />
+            <h2 className="text-lg font-bold text-neutral-900 dark:text-neutral-100">Localisation du bien</h2>
+          </div>
+
+          {/* Pastille Visite estimée : 10 min */}
+          <a
+            href="#whatsapp-contact-section"
+            title="Planifier une visite réelle du bien (10 min)"
+            className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-emerald-50 dark:bg-emerald-950/70 text-emerald-700 dark:text-emerald-300 border border-emerald-300/80 dark:border-emerald-700/80 shadow-xs hover:bg-emerald-100 dark:hover:bg-emerald-900/60 transition-all cursor-pointer group"
+          >
+            <span className="relative flex h-2 w-2">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+            </span>
+            <Clock className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400" />
+            <span>Visite estimée : 10 min</span>
+            <span className="text-2xs text-emerald-600/75 dark:text-emerald-400/75 hidden sm:inline group-hover:underline">
+              • Planifier
+            </span>
+          </a>
         </div>
+
         {onOpenLocationAdmin && (
           <button
             onClick={onOpenLocationAdmin}
@@ -171,6 +193,35 @@ export const LocationSection: React.FC<LocationSectionProps> = ({
             <p className="text-neutral-800 dark:text-neutral-200 mt-0.5">{property.address}</p>
           </div>
         )}
+
+        {/* Visite estimée : 10 min Callout */}
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 p-3.5 rounded-xl bg-gradient-to-r from-emerald-50 to-teal-50/50 dark:from-emerald-950/30 dark:to-neutral-900 border border-emerald-200/80 dark:border-emerald-800/60">
+          <div className="flex items-center gap-3">
+            <div className="w-8 h-8 rounded-lg bg-emerald-600 text-white flex items-center justify-center shrink-0 shadow-xs">
+              <Clock className="w-4 h-4" />
+            </div>
+            <div>
+              <div className="flex items-center gap-2">
+                <span className="text-xs sm:text-sm font-bold text-neutral-900 dark:text-neutral-100">
+                  Visite estimée : 10 min
+                </span>
+                <span className="px-1.5 py-0.5 rounded text-3xs font-bold uppercase bg-emerald-200/80 dark:bg-emerald-900 text-emerald-800 dark:text-emerald-200">
+                  Sur place
+                </span>
+              </div>
+              <p className="text-xs text-neutral-600 dark:text-neutral-400 mt-0.5">
+                Découvrez la maison et les 600 m² de terrain en conditions réelles avec le mandataire officiel.
+              </p>
+            </div>
+          </div>
+          <a
+            href="#whatsapp-contact-section"
+            className="inline-flex items-center justify-center gap-1.5 px-3.5 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold shadow-xs transition-all shrink-0 cursor-pointer active:scale-95"
+          >
+            <Calendar className="w-3.5 h-3.5" />
+            <span>Planifier ma visite</span>
+          </a>
+        </div>
 
         {/* Action buttons: Google Maps & Copy Address */}
         <div className="flex flex-wrap items-center gap-3 pt-2">

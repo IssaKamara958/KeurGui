@@ -8,6 +8,7 @@ import { Header } from './components/layout/Header';
 import { PriceBanner } from './components/property/PriceBanner';
 import { PropertyGallery } from './components/gallery/PropertyGallery';
 import { PropertyFeatures } from './components/property/PropertyFeatures';
+import { PropertyFAQ } from './components/property/PropertyFAQ';
 import { LocationSection } from './components/location/LocationSection';
 import { TikTokSection } from './components/tiktok/TikTokSection';
 import { WhatsAppContacts } from './components/contact/WhatsAppContacts';
@@ -18,6 +19,7 @@ import { AdminDashboard } from './components/admin/AdminDashboard';
 import { INITIAL_PROPERTY_DATA } from './data/initialData';
 import { Loader2 } from 'lucide-react';
 import { OfflineIndicator } from './components/pwa/OfflineIndicator';
+import { motion } from 'motion/react';
 
 export default function App() {
   const [property, setProperty] = useState<Property>(INITIAL_PROPERTY_DATA.property);
@@ -95,7 +97,13 @@ export default function App() {
           {/* Main Content Sections: 2 columns on desktop as specified in guide (Section 18) */}
           <main className="flex-1 max-w-6xl mx-auto w-full px-4 sm:px-6 py-8 sm:py-12 space-y-12">
             {/* Section 1: Gallery & Key Details Side-by-side or stacked on mobile */}
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.1 }}
+              transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+              className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start"
+            >
               {/* Gallery (7 cols on desktop) */}
               <div className="lg:col-span-7">
                 <PropertyGallery
@@ -141,38 +149,86 @@ export default function App() {
 
                     <button
                       onClick={() => scrollToSection('location-section')}
-                      className="w-full py-3 px-4 bg-neutral-100 dark:bg-neutral-800 hover:bg-neutral-200 dark:hover:bg-neutral-700 text-neutral-800 dark:text-neutral-200 text-xs font-semibold rounded-xl border border-neutral-200 dark:border-neutral-700 transition-colors cursor-pointer flex items-center justify-center gap-2"
+                      className="w-full py-3 px-4 bg-neutral-100 dark:bg-neutral-800 hover:bg-neutral-200 dark:hover:bg-neutral-700 text-neutral-800 dark:text-neutral-200 text-xs font-semibold rounded-xl border border-neutral-200 dark:border-neutral-700 transition-colors cursor-pointer flex items-center justify-between gap-2"
                     >
                       <span>🗺️ Voir la carte & Localisation</span>
+                      <span className="text-3xs font-bold px-2 py-0.5 rounded-full bg-emerald-100 dark:bg-emerald-950 text-emerald-800 dark:text-emerald-300 border border-emerald-300/60 dark:border-emerald-800/60">
+                        Visite : 10 min
+                      </span>
                     </button>
                   </div>
                 </div>
               </div>
-            </div>
+            </motion.div>
 
             {/* Section 2: Characteristics & Description */}
-            <PropertyFeatures property={property} />
+            <motion.div
+              initial={{ opacity: 0, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.15 }}
+              transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+            >
+              <PropertyFeatures property={property} />
+            </motion.div>
+
+            {/* Section 2.5: Frequently Asked Questions (FAQ Accordion) */}
+            <motion.div
+              initial={{ opacity: 0, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.15 }}
+              transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+            >
+              <PropertyFAQ property={property} />
+            </motion.div>
 
             {/* Section 3: Location & Map */}
-            <LocationSection
-              property={property}
-              onOpenLocationAdmin={() => setIsAdminOpen(true)}
-            />
+            <motion.div
+              initial={{ opacity: 0, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.15 }}
+              transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+            >
+              <LocationSection
+                property={property}
+                onOpenLocationAdmin={() => setIsAdminOpen(true)}
+              />
+            </motion.div>
 
             {/* Section 4: TikTok Showcase */}
-            <TikTokSection
-              media={property.media}
-              onOpenAdminMedia={() => setIsAdminOpen(true)}
-            />
+            <motion.div
+              initial={{ opacity: 0, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.15 }}
+              transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+            >
+              <TikTokSection
+                media={property.media}
+                onOpenAdminMedia={() => setIsAdminOpen(true)}
+              />
+            </motion.div>
 
             {/* Section 5: Dynamic WhatsApp Contacts */}
-            <WhatsAppContacts
-              property={property}
-              onOpenContactAdmin={() => setIsAdminOpen(true)}
-            />
+            <motion.div
+              initial={{ opacity: 0, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.15 }}
+              transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+            >
+              <WhatsAppContacts
+                property={property}
+                onOpenContactAdmin={() => setIsAdminOpen(true)}
+              />
+            </motion.div>
 
             {/* Section 6: Seller Partnership & Mandates (12% Commission, 48h review, standard contract) */}
-            <PartnershipSection />
+            <motion.div
+              initial={{ opacity: 0, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.1 }}
+              transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+            >
+              <PartnershipSection />
+            </motion.div>
           </main>
 
           {/* Sticky Mobile Contact Bar */}
