@@ -21,11 +21,11 @@ export const Header: React.FC<HeaderProps> = ({ property, onOpenAdmin, onOpenPar
     if (navigator.share) {
       try {
         await navigator.share({
-          title: property.title,
-          text: `Maison à vendre à ${property.city} au prix de ${PropertyService.formatPrice(
+          title: 'Keur Mame Fatou',
+          text: `Keur Mame Fatou (Votre confort, notre priorité) — Maison de ${property.surface} ${property.unit} à ${property.city} au prix de ${PropertyService.formatPrice(
             property.price,
             property.currency
-          )}. Contact vendeur : ${property.seller.name}`,
+          )}. Mandataire : ${property.seller.name}`,
           url: window.location.href,
         });
         showToast('Lien partagé avec succès !', 'success');
@@ -77,20 +77,25 @@ export const Header: React.FC<HeaderProps> = ({ property, onOpenAdmin, onOpenPar
   return (
     <header className="sticky top-0 z-40 bg-white/90 dark:bg-neutral-950/90 backdrop-blur-md border-b border-neutral-200/80 dark:border-neutral-800/80 transition-colors">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 h-16 sm:h-20 flex items-center justify-between gap-3">
-        {/* Logo & Title */}
+        {/* Official Brand Logo & Title */}
         <div className="flex items-center gap-3 min-w-0">
-          <div className="w-10 h-10 rounded-xl bg-neutral-900 dark:bg-neutral-800 text-white flex items-center justify-center shadow-xs shrink-0 border border-neutral-800 dark:border-neutral-700">
-            <Home className="w-5 h-5 text-emerald-400" />
+          <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl overflow-hidden bg-white dark:bg-neutral-900 border border-emerald-500/30 p-0.5 shadow-xs shrink-0 flex items-center justify-center">
+            <img
+              src="/keur-mame-fatou.png"
+              alt="Logo Keur Mame Fatou"
+              className="w-full h-full object-contain rounded-lg"
+              referrerPolicy="no-referrer"
+            />
           </div>
           <div className="min-w-0">
             <div className="flex items-center gap-2 flex-wrap">
-              <h1 className="text-base sm:text-lg font-bold text-neutral-900 dark:text-neutral-100 tracking-tight leading-none truncate">
-                {property.title}
+              <h1 className="text-base sm:text-lg font-extrabold text-neutral-900 dark:text-neutral-100 tracking-tight leading-none truncate">
+                Keur Mame Fatou
               </h1>
               {getStatusBadge()}
             </div>
             <p className="text-xs text-neutral-500 dark:text-neutral-400 mt-1 hidden sm:block truncate">
-              {property.city || property.country} • Dossier : {property.owners[0]?.name || 'Succession'}
+              Votre confort, notre priorité • {property.surface} {property.unit} • {property.city || property.country}
             </p>
           </div>
         </div>

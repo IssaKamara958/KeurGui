@@ -1,6 +1,6 @@
 {
-  "name": "Maison à vendre",
-  "description": "Application immobilière dynamique pour la vente d'une maison à 55 000 000 FCFA au Sénégal. Galerie photos, contact WhatsApp direct, géolocalisation et administration complète.",
+  "name": "Keur Mame Fatou",
+  "description": "Keur Mame Fatou - Votre confort, notre priorité. Plateforme immobilière pour l'achat, la vente de maisons et terrains au Sénégal, avec gestion de partenariats vendeurs et mandats officiels.",
   "requestFramePermissions": ["geolocation"],
   "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
 }

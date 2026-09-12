@@ -200,13 +200,18 @@ export const PartnershipFormModal: React.FC<PartnershipFormModalProps> = ({ onCl
         {/* Header */}
         <div className="bg-neutral-900 dark:bg-neutral-950 text-white px-6 py-4 flex items-center justify-between border-b border-neutral-800 shrink-0">
           <div className="flex items-center gap-3">
-            <div className="w-9 h-9 rounded-xl bg-emerald-500 text-white flex items-center justify-center font-bold">
-              <Building className="w-5 h-5" />
+            <div className="w-10 h-10 rounded-xl bg-white dark:bg-neutral-800 p-0.5 border border-emerald-500/40 shadow-xs flex items-center justify-center shrink-0 overflow-hidden">
+              <img
+                src="/keur-mame-fatou.png"
+                alt="Logo Keur Mame Fatou"
+                className="w-full h-full object-contain rounded-lg"
+                referrerPolicy="no-referrer"
+              />
             </div>
             <div>
-              <h2 className="text-base sm:text-lg font-bold">Souscription Partenariat Vendeur</h2>
+              <h2 className="text-base sm:text-lg font-bold">Keur Mame Fatou • Partenariat Vendeur</h2>
               <p className="text-2xs sm:text-xs text-neutral-400">
-                Mise en vente de maison ou terrain • Commission de 12% • Étude de dossier sous 48h
+                Votre confort, notre priorité • Commission 12% • Étude de dossier sous 48h
               </p>
             </div>
           </div>

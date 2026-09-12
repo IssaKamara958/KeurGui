@@ -3,10 +3,10 @@ import { FullPropertyData } from '../types';
 export const INITIAL_PROPERTY_DATA: FullPropertyData = {
   property: {
     id: 'maison-fatou-ba-001',
-    title: 'Maison à vendre',
-    slug: 'maison-a-vendre',
+    title: 'Keur Mame Fatou',
+    slug: 'keur-mame-fatou',
     description:
-      "Opportunité immobilière exceptionnelle au Sénégal. Maison à vendre d'une superficie de 600 m², proposée à 55 000 000 FCFA. Emplacement stratégique à fort potentiel d'aménagement ou de valorisation foncière. Dossier complet géré par le mandataire Mr KAMARA. Visites et renseignements directs via WhatsApp.",
+      "Opportunité immobilière exceptionnelle au Sénégal : Keur Mame Fatou — Votre confort, notre priorité. Maison à vendre d'une superficie de 600 m², proposée à 55 000 000 FCFA. Emplacement stratégique à fort potentiel d'aménagement ou de valorisation foncière. Dossier complet géré par le mandataire Mr KAMARA. Visites et renseignements directs via WhatsApp.",
     price: 55000000,
     currency: 'FCFA',
     surface: 600,
@@ -23,11 +23,10 @@ export const INITIAL_PROPERTY_DATA: FullPropertyData = {
     location_verified: false,
     is_published: true,
     published_at: '2026-03-01T10:00:00.000Z',
-    seo_title: 'Maison à vendre — 55 000 000 FCFA | Sénégal',
+    seo_title: 'Keur Mame Fatou — 55 000 000 FCFA | Sénégal',
     seo_description:
-      'Maison à vendre au prix de 55 000 000 FCFA (600 m²). Mandataire : Mr KAMARA. Contact direct WhatsApp.',
-    og_image:
-      'https://images.unsplash.com/photo-1580587771525-78b9dba3b914?auto=format&fit=crop&w=1600&q=80',
+      'Keur Mame Fatou - Votre confort, notre priorité. Maison à vendre au prix de 55 000 000 FCFA (600 m²). Mandataire : Mr KAMARA. Contact direct WhatsApp.',
+    og_image: '/keur-mame-fatou.png',
     created_at: '2026-03-01T10:00:00.000Z',
     updated_at: '2026-03-08T12:00:00.000Z',
 

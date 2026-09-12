@@ -404,15 +404,20 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
         {/* Modal Header */}
         <div className="bg-neutral-900 dark:bg-neutral-950 text-white px-6 py-4 flex items-center justify-between border-b border-neutral-800 shrink-0">
           <div className="flex items-center gap-3">
-            <div className="w-8 h-8 rounded-lg bg-emerald-500 text-white flex items-center justify-center">
-              <Lock className="w-4 h-4" />
+            <div className="w-9 h-9 rounded-xl bg-white dark:bg-neutral-800 p-0.5 border border-emerald-500/40 shadow-xs flex items-center justify-center shrink-0 overflow-hidden">
+              <img
+                src="/keur-mame-fatou.png"
+                alt="Logo Keur Mame Fatou"
+                className="w-full h-full object-contain rounded-lg"
+                referrerPolicy="no-referrer"
+              />
             </div>
             <div>
               <h2 className="text-base font-bold tracking-tight">
-                Administration Dynamique du Bien
+                Administration — Keur Mame Fatou
               </h2>
               <p className="text-2xs text-neutral-400">
-                Gestionnaire de vente • {property.title} ({PropertyService.formatPrice(property.price, property.currency)})
+                Votre confort, notre priorité • Gestion & Partenariats Mandat (12%)
               </p>
             </div>
           </div>
@@ -441,12 +446,17 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
         {!isAuthenticated ? (
           /* Login View */
           <div className="p-8 sm:p-12 max-w-md mx-auto w-full text-center space-y-6">
-            <div className="w-16 h-16 rounded-2xl bg-amber-100 dark:bg-amber-950/60 text-amber-800 dark:text-amber-300 mx-auto flex items-center justify-center shadow-inner">
-              <Lock className="w-8 h-8" />
+            <div className="w-20 h-20 rounded-2xl bg-white dark:bg-neutral-800 border border-emerald-500/30 p-1 mx-auto flex items-center justify-center shadow-md overflow-hidden">
+              <img
+                src="/keur-mame-fatou.png"
+                alt="Keur Mame Fatou"
+                className="w-full h-full object-contain rounded-xl"
+                referrerPolicy="no-referrer"
+              />
             </div>
 
             <div>
-              <h3 className="text-xl font-bold text-neutral-900 dark:text-neutral-100">Espace Vendeur & Administrateur</h3>
+              <h3 className="text-xl font-bold text-neutral-900 dark:text-neutral-100">Administration Keur Mame Fatou</h3>
               <p className="text-sm text-neutral-500 dark:text-neutral-400 mt-1">
                 Accès réservé à Abdou KAMARA et aux ayants droit de Fatou Ba.
               </p>

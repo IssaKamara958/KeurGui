@@ -101,24 +101,32 @@ export const PartnershipContractView: React.FC<PartnershipContractViewProps> = (
       <div className="p-6 sm:p-10 font-serif text-neutral-800 dark:text-neutral-200 text-xs sm:text-sm leading-relaxed space-y-6 bg-white dark:bg-neutral-900 print:p-8 print:text-black">
         {/* Document Header */}
         <div className="border-b-2 border-neutral-800 dark:border-neutral-700 pb-5 flex items-start justify-between gap-4 flex-wrap">
-          <div>
-            <div className="flex items-center gap-2">
-              <span className="text-xs font-bold tracking-widest uppercase px-2 py-0.5 bg-emerald-100 dark:bg-emerald-950 text-emerald-800 dark:text-emerald-300 rounded font-sans">
-                DOCUMENT CONTRACTUEL OFFICIEL
-              </span>
-              <span className="text-2xs font-sans text-neutral-500">RÉPUBLIQUE DU SÉNÉGAL / OHADA</span>
+          <div className="flex items-start gap-3.5">
+            <img
+              src="/keur-mame-fatou.png"
+              alt="Keur Mame Fatou"
+              className="w-14 h-14 rounded-2xl object-contain border border-emerald-500/30 p-1 bg-white shadow-xs shrink-0"
+              referrerPolicy="no-referrer"
+            />
+            <div>
+              <div className="flex items-center gap-2">
+                <span className="text-xs font-bold tracking-widest uppercase px-2 py-0.5 bg-emerald-100 dark:bg-emerald-950 text-emerald-800 dark:text-emerald-300 rounded font-sans">
+                  KEUR MAME FATOU
+                </span>
+                <span className="text-2xs font-sans text-neutral-500">RÉPUBLIQUE DU SÉNÉGAL / OHADA</span>
+              </div>
+              <h1 className="text-xl sm:text-2xl font-bold tracking-tight text-neutral-900 dark:text-white mt-1">
+                CONTRAT DE PARTENARIAT & MANDAT D'INTERMÉDIATION (12%)
+              </h1>
+              <p className="text-xs font-sans text-neutral-600 dark:text-neutral-400 mt-1">
+                Réf Contractuelle : <strong className="font-mono">{contract.contract_number}</strong> • Émis le{' '}
+                {new Date(contract.issued_at).toLocaleDateString('fr-FR', {
+                  year: 'numeric',
+                  month: 'long',
+                  day: 'numeric',
+                })}
+              </p>
             </div>
-            <h1 className="text-xl sm:text-2xl font-bold tracking-tight text-neutral-900 dark:text-white mt-2">
-              CONTRAT DE PARTENARIAT & MANDAT D'INTERMÉDIATION IMMOBILIÈRE
-            </h1>
-            <p className="text-xs font-sans text-neutral-600 dark:text-neutral-400 mt-1">
-              Réf Contractuelle : <strong className="font-mono">{contract.contract_number}</strong> • Émis le{' '}
-              {new Date(contract.issued_at).toLocaleDateString('fr-FR', {
-                year: 'numeric',
-                month: 'long',
-                day: 'numeric',
-              })}
-            </p>
           </div>
 
           <div className="text-right shrink-0">
@@ -139,7 +147,7 @@ export const PartnershipContractView: React.FC<PartnershipContractViewProps> = (
               M. Abdou KAMARA & Ayants droit
             </div>
             <p className="text-neutral-600 dark:text-neutral-400">
-              Administrateur et Mandataire officiel de l'application de vente immobilière
+              Administrateur et Mandataire officiel de la plateforme Keur Mame Fatou
             </p>
             <p className="text-neutral-600 dark:text-neutral-400 font-mono">
               Thiès, République du Sénégal • Contact vérifié

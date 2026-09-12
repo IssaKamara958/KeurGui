@@ -17,15 +17,20 @@ export const Footer: React.FC<FooterProps> = ({ property, onOpenAdmin }) => {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 pb-10 border-b border-neutral-800">
           {/* Brand & summary */}
           <div className="space-y-3">
-            <div className="flex items-center gap-2.5 text-white">
-              <div className="w-8 h-8 rounded-lg bg-emerald-500 flex items-center justify-center text-white">
-                <Home className="w-4 h-4" />
+            <div className="flex items-center gap-3 text-white">
+              <img
+                src="/keur-mame-fatou.png"
+                alt="Logo Keur Mame Fatou"
+                className="w-10 h-10 rounded-xl object-contain bg-white/10 p-0.5 border border-emerald-500/30 shadow-xs"
+                referrerPolicy="no-referrer"
+              />
+              <div>
+                <span className="font-extrabold text-base tracking-tight block leading-none">Keur Mame Fatou</span>
+                <span className="text-2xs text-emerald-400 font-medium">Votre confort, notre priorité</span>
               </div>
-              <span className="font-bold text-base tracking-tight">{property.title}</span>
             </div>
             <p className="text-xs text-neutral-400 leading-relaxed">
-              Annonce officielle pour la vente de la maison de {property.surface} {property.unit} au prix de{' '}
-              {PropertyService.formatPrice(property.price, property.currency)}.
+              Plateforme immobilière officielle pour la vente de la maison de {property.surface} {property.unit} ({property.owners[0]?.name || 'Descendants de Fatou Ba'}) et l'intermédiation de biens immobiliers au Sénégal.
             </p>
             <div className="text-2xs text-emerald-400 font-semibold flex items-center gap-1.5">
               <ShieldCheck className="w-4 h-4" />
@@ -79,7 +84,7 @@ export const Footer: React.FC<FooterProps> = ({ property, onOpenAdmin }) => {
 
         {/* Copyright & developer notice & PWA */}
         <div className="pt-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-2xs text-neutral-500">
-          <p>© {new Date().getFullYear()} — {property.title}. Tous droits réservés.</p>
+          <p>© {new Date().getFullYear()} — Keur Mame Fatou. Tous droits réservés.</p>
           <div className="flex items-center gap-4 flex-wrap">
             <ThemeToggle variant="compact" />
             <PWAInstallButton variant="footer" />

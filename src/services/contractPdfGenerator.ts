@@ -48,14 +48,14 @@ export class ContractPdfGenerator {
 
     doc.setTextColor(255, 255, 255);
     doc.setFont('helvetica', 'bold');
-    doc.setFontSize(10.5);
-    doc.text('RÉPUBLIQUE DU SÉNÉGAL • CADRE JURIDIQUE OHADA / COCC', margin + 5, y + 7.5);
+    doc.setFontSize(10);
+    doc.text('KEUR MAME FATOU • RÉPUBLIQUE DU SÉNÉGAL • OHADA / COCC', margin + 5, y + 7.5);
 
     doc.setFont('helvetica', 'normal');
     doc.setFontSize(8);
     doc.setTextColor(167, 243, 208); // emerald-200
     doc.text(
-      "CONTRAT OFFICIEL DE PARTENARIAT & MANDAT D'INTERMÉDIATION IMMOBILIÈRE",
+      "CONTRAT OFFICIEL DE PARTENARIAT & MANDAT D'INTERMÉDIATION IMMOBILIÈRE (12%)",
       margin + 5,
       y + 14.5
     );
@@ -118,7 +118,7 @@ export class ContractPdfGenerator {
     doc.setFontSize(7);
     doc.setTextColor(55, 65, 81);
     doc.text("M. Abdou KAMARA & Ayants droit", margin + 3, y + 9);
-    doc.text("Mandataire officiel de la plateforme immobilière", margin + 3, y + 13);
+    doc.text("Mandataire officiel • Plateforme Keur Mame Fatou", margin + 3, y + 13);
     doc.text("Thiès, République du Sénégal", margin + 3, y + 17);
     doc.text("Contacts : +221 77 638 17 01 / +221 77 236 41 44", margin + 3, y + 21);
 
@@ -374,7 +374,7 @@ export class ContractPdfGenerator {
     doc.setFontSize(5.5);
     doc.setTextColor(156, 163, 175);
     doc.text(
-      `Document contractuel original généré automatiquement via la plateforme de vente immobilière • Réf: ${activeContract.contract_number} • Page 1/1`,
+      `Document contractuel original généré automatiquement via la plateforme Keur Mame Fatou (Votre confort, notre priorité) • Réf: ${activeContract.contract_number} • Page 1/1`,
       margin,
       y
     );

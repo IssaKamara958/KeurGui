@@ -4,13 +4,18 @@ import { Property, PropertyMedia, Contact, PropertyFeature } from '../types';
 const STORAGE_KEY = 'maison_a_vendre_property_v3';
 
 function sanitizeProperty(property: Property): Property {
-  if (property && property.features) {
-    property.features = property.features.map((feat) => {
-      if ((feat.id === 'feat-01' || feat.label.toLowerCase() === 'superficie') && (feat.value === '25 m²' || feat.value === '25')) {
-        return { ...feat, value: '600 m²' };
-      }
-      return feat;
-    });
+  if (property) {
+    if (!property.title || property.title === 'Maison à vendre') {
+      property.title = 'Keur Mame Fatou';
+    }
+    if (property.features) {
+      property.features = property.features.map((feat) => {
+        if ((feat.id === 'feat-01' || feat.label.toLowerCase() === 'superficie') && (feat.value === '25 m²' || feat.value === '25')) {
+          return { ...feat, value: '600 m²' };
+        }
+        return feat;
+      });
+    }
   }
   return property;
 }

@@ -99,7 +99,7 @@ export const PropertyFeatures: React.FC<PropertyFeaturesProps> = ({ property }) 
         </h2>
         <p className="text-sm sm:text-base text-neutral-700 dark:text-neutral-300 leading-relaxed whitespace-pre-line">
           {property.description ||
-            "Opportunité immobilière exceptionnelle au Sénégal. Maison à vendre d'une superficie de 600 m², proposée à 55 000 000 FCFA. Emplacement stratégique à fort potentiel d'aménagement ou de valorisation foncière. Dossier complet géré par le mandataire Mr KAMARA. Visites et renseignements directs via WhatsApp."}
+            "Opportunité immobilière exceptionnelle au Sénégal : Keur Mame Fatou — Votre confort, notre priorité. Maison à vendre d'une superficie de 600 m², proposée à 55 000 000 FCFA. Emplacement stratégique à fort potentiel d'aménagement ou de valorisation foncière. Dossier complet géré par le mandataire Mr KAMARA. Visites et renseignements directs via WhatsApp."}
         </p>
       </div>
 

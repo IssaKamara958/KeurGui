@@ -83,39 +83,53 @@ export const PartnershipSection: React.FC<PartnershipSectionProps> = () => {
         {/* Subtle decorative glow */}
         <div className="absolute top-0 right-0 -mt-8 -mr-8 w-64 h-64 bg-emerald-500/10 rounded-full blur-3xl pointer-events-none"></div>
 
-        <div className="relative z-10 max-w-3xl space-y-4">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/20 border border-emerald-500/40 text-emerald-300 text-xs font-semibold">
-            <Handshake className="w-3.5 h-3.5" />
-            <span>ESPACE PARTENARIAT & MANDAT VENDEURS</span>
+        <div className="relative z-10 flex flex-col lg:flex-row lg:items-center justify-between gap-8">
+          <div className="max-w-2xl space-y-4">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/20 border border-emerald-500/40 text-emerald-300 text-xs font-semibold">
+              <Handshake className="w-3.5 h-3.5" />
+              <span>KEUR MAME FATOU • PARTENARIAT & MANDAT (12%)</span>
+            </div>
+
+            <h2 className="text-2xl sm:text-4xl font-extrabold tracking-tight text-white">
+              Vendez votre maison ou terrain avec Keur Mame Fatou
+            </h2>
+
+            <p className="text-sm sm:text-base text-neutral-300 leading-relaxed">
+              Vous êtes propriétaire, héritier ou mandataire d'un bien immobilier au Sénégal ? Confiez votre bien à
+              l'administration officielle de Keur Mame Fatou (Abdou KAMARA). Bénéficiez d'une étude rigoureuse de votre dossier sous 48
+              heures, d'une diffusion de premier ordre et d'un contrat de mandat standardisé (commission de 12%) garantissant votre prix net vendeur.
+            </p>
+
+            {/* Quick CTA and Key Value Proposition */}
+            <div className="pt-2 flex flex-wrap items-center gap-3">
+              <button
+                onClick={() => setIsFormOpen(true)}
+                className="px-6 py-3.5 rounded-2xl bg-emerald-500 hover:bg-emerald-400 text-neutral-950 font-extrabold text-sm flex items-center gap-2 shadow-lg hover:shadow-emerald-500/25 transition-all cursor-pointer transform hover:-translate-y-0.5 active:translate-y-0"
+              >
+                <span>Déposer un dossier de partenariat</span>
+                <ArrowRight className="w-4 h-4" />
+              </button>
+
+              <a
+                href="#suivi-dossier"
+                className="px-5 py-3.5 rounded-2xl bg-neutral-800/80 hover:bg-neutral-800 text-white font-semibold text-sm border border-neutral-700/80 transition-colors flex items-center gap-2"
+              >
+                <Search className="w-4 h-4 text-emerald-400" />
+                <span>Suivre un dossier existant</span>
+              </a>
+            </div>
           </div>
 
-          <h2 className="text-2xl sm:text-4xl font-extrabold tracking-tight text-white">
-            Vendez votre maison ou terrain en toute sérénité
-          </h2>
-
-          <p className="text-sm sm:text-base text-neutral-300 leading-relaxed">
-            Vous êtes propriétaire, héritier ou mandataire d'un bien immobilier au Sénégal ? Confiez votre bien à
-            l'administration officielle d'Abdou KAMARA. Bénéficiez d'une étude rigoureuse de votre dossier sous 48
-            heures, d'une diffusion exclusive et d'un contrat de mandat standardisé garantissant votre prix net vendeur.
-          </p>
-
-          {/* Quick CTA and Key Value Proposition */}
-          <div className="pt-2 flex flex-wrap items-center gap-3">
-            <button
-              onClick={() => setIsFormOpen(true)}
-              className="px-6 py-3.5 rounded-2xl bg-emerald-500 hover:bg-emerald-400 text-neutral-950 font-extrabold text-sm flex items-center gap-2 shadow-lg hover:shadow-emerald-500/25 transition-all cursor-pointer transform hover:-translate-y-0.5 active:translate-y-0"
-            >
-              <span>Déposer un dossier de partenariat</span>
-              <ArrowRight className="w-4 h-4" />
-            </button>
-
-            <a
-              href="#suivi-dossier"
-              className="px-5 py-3.5 rounded-2xl bg-neutral-800/80 hover:bg-neutral-800 text-white font-semibold text-sm border border-neutral-700/80 transition-colors flex items-center gap-2"
-            >
-              <Search className="w-4 h-4 text-emerald-400" />
-              <span>Suivre un dossier existant</span>
-            </a>
+          {/* Official Brand Badge */}
+          <div className="shrink-0 flex items-center justify-center lg:justify-end">
+            <div className="w-32 h-32 sm:w-40 sm:h-40 rounded-3xl bg-white/10 p-2.5 backdrop-blur-md border border-emerald-400/30 shadow-2xl flex items-center justify-center">
+              <img
+                src="/keur-mame-fatou.png"
+                alt="Logo officiel Keur Mame Fatou"
+                className="w-full h-full object-contain rounded-2xl drop-shadow-md"
+                referrerPolicy="no-referrer"
+              />
+            </div>
           </div>
         </div>
 
